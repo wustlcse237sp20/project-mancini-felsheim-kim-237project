@@ -1,9 +1,6 @@
 package studentOrganizer;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Map;
-
 
 public class ScheduleUnit {
 
