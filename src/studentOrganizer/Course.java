@@ -18,7 +18,7 @@ public class Course {
 	public Course(String courseName) {
 		this.courseName = courseName;
 	}
-	
+	 
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
