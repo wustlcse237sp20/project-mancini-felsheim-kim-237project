@@ -17,12 +17,20 @@ class CourseTest {
 		weekdays.add("Thursday");
 		int[] startTime = {11, 30};
 		int[] endTime = {1, 0};
-		course.setCourseMeetingTime(weekdays, startTime, endTime);
 		LocalTime[] times = {LocalTime.of(11, 30), LocalTime.of(1, 0)};
-		Assert.assertEquals(course.courseSchedule.get("Tuesday")[0], times[0]);
-		Assert.assertEquals(course.courseSchedule.get("Tuesday")[1], times[1]);
-		Assert.assertEquals(course.courseSchedule.get("Thursday")[0], times[0]);
-		Assert.assertEquals(course.courseSchedule.get("Thursday")[1], times[1]);
+		
+		course.setCourseSchedule(weekdays, startTime, endTime);
+		
+		Assert.assertEquals(course.getCourseMeetingDays(), weekdays);
+		Assert.assertEquals(course.getCourseMeetingTime()[0], times[0]);
+		Assert.assertEquals(course.getCourseSchedule().get(0).getEventTitle(), "Physics");
+		Assert.assertEquals(course.getCourseSchedule().get(1).getEventTitle(), "Physics");
+		Assert.assertEquals(course.getCourseSchedule().get(0).getStartTime(), LocalTime.of(11, 30));
+		Assert.assertEquals(course.getCourseSchedule().get(1).getStartTime(), LocalTime.of(11, 30));
+		Assert.assertEquals(course.getCourseSchedule().get(0).getEndTime(), LocalTime.of(1, 0));
+		Assert.assertEquals(course.getCourseSchedule().get(1).getEndTime(), LocalTime.of(1, 0));
+		Assert.assertEquals(course.getCourseSchedule().get(0).getWeekday(), "Tuesday");
+		Assert.assertEquals(course.getCourseSchedule().get(1).getWeekday(), "Thursday");
 	}
 	
 
