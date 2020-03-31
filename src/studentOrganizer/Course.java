@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Course {
-	
+	 
 	String courseName;
 	double courseGrade;
 	ArrayList<String> courseMeetingDays;
