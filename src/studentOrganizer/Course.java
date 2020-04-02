@@ -17,6 +17,9 @@ public class Course {
 	
 	public Course(String courseName) {
 		this.courseName = courseName;
+		this.courseMeetingDays = new ArrayList<String>();
+		this.courseMeetingTime = new LocalTime[2];
+		this.courseSchedule = new ArrayList<ScheduleUnit>();
 	}
 	 
 	public void setCourseName(String courseName) {
@@ -44,6 +47,12 @@ public class Course {
 		for (String day: weekdays) {
 			this.courseSchedule.add(new ScheduleUnit(this.courseName, day, this.courseMeetingTime));
 		}
+	}
+	
+	public void removeCourseSchedule() {
+		this.courseMeetingDays.clear();
+		this.courseMeetingTime = new LocalTime[2];
+		this.courseSchedule.clear();
 	}
 	
 	public String getCourseName() {
