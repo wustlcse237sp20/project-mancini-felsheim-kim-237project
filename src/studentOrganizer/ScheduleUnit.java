@@ -2,14 +2,14 @@ package studentOrganizer;
 
 import java.time.LocalTime;
 
-public class ScheduleUnit {
+public class ScheduleUnit implements Comparable<ScheduleUnit> {
 
 	String eventTitle;
 	String weekday;
 	LocalTime startTime;
 	LocalTime endTime;
 	
-	ScheduleUnit (String eventTitle, String weekday, LocalTime[] meetingTime) {
+	public ScheduleUnit (String eventTitle, String weekday, LocalTime[] meetingTime) {
 		this.eventTitle = eventTitle;
 		this.weekday = weekday;
 		this.startTime = meetingTime[0];
@@ -35,5 +35,19 @@ public class ScheduleUnit {
 	public LocalTime[] getMeetingTime() {
 		return new LocalTime[]{this.startTime, this.endTime};
 	}
+	
+	public String getStartTimeAsString() {
+		return startTime.toString();
+	}
+	
+	public String getEndTimeAsString() {
+		return endTime.toString();
+	}
+	
+	@Override
+	public int compareTo(ScheduleUnit otherEvent) {
+		return this.startTime.compareTo(otherEvent.getStartTime());
+	}
+ 
 	
 }
