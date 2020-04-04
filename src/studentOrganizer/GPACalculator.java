@@ -1,9 +1,7 @@
 package studentOrganizer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GPACalculator {
 	// stuff to store: weights, assignment names, assignment grades
@@ -13,6 +11,10 @@ public class GPACalculator {
 	
 	public GPACalculator() {
 		categories = new ArrayList<Category>();
+	}
+	
+	public List<Category> getCategories() {
+		return categories;
 	}
 	
 	public void addCategory(String name, double weight) {
@@ -27,7 +29,14 @@ public class GPACalculator {
 		}
 	}
 	
-	//?? this method returns the courseGPA and also sets courseGPA, sketchy
+	public void deleteAssignmentGrade(String categoryName, String assignmentName) {
+		for(Category c: categories) {
+			if(c.name.equals(categoryName)) {
+				c.deleteAssignmentGrade(assignmentName);
+			}
+		}
+	}
+	
 	public double calculateCourseGrade() {
 		double n = 0;
 		for(Category c: categories) {
@@ -38,9 +47,9 @@ public class GPACalculator {
 	}
 	
 	
-		
-	
 	// calculate cumulative grade of the semester; will need courses for this
+	// cumulative grade for the semester will show up at the bottom at all times, will
+	// automatically update if any changes to the grades are made
 	
 	
 	
