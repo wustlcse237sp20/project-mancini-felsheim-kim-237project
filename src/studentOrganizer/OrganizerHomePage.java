@@ -53,6 +53,9 @@ public class OrganizerHomePage {
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
 		
+		classController = new ClassController();
+		scheduleController = new ScheduleController();
+		
 		JLabel lblNewLabel = new JLabel("Stay Organized!");
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 110, SpringLayout.WEST, frame.getContentPane());
@@ -66,7 +69,7 @@ public class OrganizerHomePage {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose(); 
-				OrganizerListPage listPage = new OrganizerListPage();
+				OrganizerListPage listPage = new OrganizerListPage(classController, scheduleController);
 				listPage.setVisible(true);
 			}
 		});
@@ -79,7 +82,7 @@ public class OrganizerHomePage {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-				OrganizerClassPage classesPage = new OrganizerClassPage();
+				OrganizerClassPage classesPage = new OrganizerClassPage(classController, scheduleController);
 				classesPage.setVisible(true);
 			}
 		});
@@ -96,9 +99,40 @@ public class OrganizerHomePage {
 			public void mouseClicked(MouseEvent e) {
 				String s = (String)JOptionPane.showInputDialog(null, "What day do you want to view?", "Customized dialog", JOptionPane.QUESTION_MESSAGE, null, dayOptions, dayOptions[0]);
 				if (s=="Monday") {
-					frame.dispose();
-					MondaySchedule schedulePage = new MondaySchedule();
+					MondaySchedule schedulePage = new MondaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
+					frame.dispose();
+				}
+				else if (s=="Tuesday") {
+					TuesdaySchedule schedulePage = new TuesdaySchedule(scheduleController, classController);
+					schedulePage.setVisible(true);
+					frame.dispose();
+				}
+				else if (s=="Wednesday") {
+					WednesdaySchedule schedulePage = new WednesdaySchedule(scheduleController, classController);
+					schedulePage.setVisible(true);
+					frame.dispose();
+				}
+				else if (s=="Thursday") {
+					ThursdaySchedule schedulePage = new ThursdaySchedule(scheduleController, classController);
+					schedulePage.setVisible(true);
+					frame.dispose();
+				}
+				else if (s=="Friday") {
+					FridaySchedule schedulePage = new FridaySchedule(scheduleController, classController);
+					schedulePage.setVisible(true);
+					frame.dispose();
+				}
+				else if (s=="Saturday") {
+					SaturdaySchedule schedulePage = new SaturdaySchedule(scheduleController, classController);
+					schedulePage.setVisible(true);
+					frame.dispose();
+					
+				}
+				else if (s=="Sunday") {
+					SundaySchedule schedulePage = new SundaySchedule(scheduleController, classController);
+					schedulePage.setVisible(true);
+					frame.dispose();
 				}
 				
 			}
@@ -115,7 +149,7 @@ public class OrganizerHomePage {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-				OrganizerGradePage gradePage = new OrganizerGradePage();
+				OrganizerGradePage gradePage = new OrganizerGradePage(classController, scheduleController);
 				gradePage.setVisible(true);
 			}
 		});

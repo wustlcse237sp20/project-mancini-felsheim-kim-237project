@@ -69,7 +69,7 @@ public class MondaySchedule extends JFrame {
 		btnGoHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				OrganizerHome homePage = new OrganizerHome();
+				OrganizerHome homePage = new OrganizerHome(classController, scheduleController);
 				homePage.setVisible(true);
 				contentPane.setVisible(false);
 				dispose();
@@ -109,7 +109,7 @@ public class MondaySchedule extends JFrame {
 		btnGoHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				OrganizerHome homePage = new OrganizerHome();
+				OrganizerHome homePage = new OrganizerHome(classController, scheduleController);
 				homePage.setVisible(true);
 				contentPane.setVisible(false);
 				dispose();
