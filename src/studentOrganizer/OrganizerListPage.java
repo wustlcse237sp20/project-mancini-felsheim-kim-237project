@@ -9,12 +9,19 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 public class OrganizerListPage extends JFrame {
 
 	private JPanel contentPane;
+	private ClassController controller;
+
 
 	/**
 	 * Launch the application.
@@ -50,32 +57,64 @@ public class OrganizerListPage extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblToDoList, 23, SpringLayout.WEST, contentPane);
 		contentPane.add(lblToDoList);
 		
-		JList list = new JList();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 12, SpringLayout.SOUTH, lblToDoList);
-		sl_contentPane.putConstraint(SpringLayout.WEST, list, 15, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, 215, SpringLayout.SOUTH, lblToDoList);
-		sl_contentPane.putConstraint(SpringLayout.EAST, list, 217, SpringLayout.WEST, contentPane);
+		controller = new ClassController();
+		JList list = new JList(controller.getAllTasks());
+		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 17, SpringLayout.SOUTH, lblToDoList);
+		sl_contentPane.putConstraint(SpringLayout.WEST, list, 20, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -16, SpringLayout.SOUTH, contentPane);
 		contentPane.add(list);
 		
 		JButton btnGoHome = new JButton("Go Home");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnGoHome, 0, SpringLayout.NORTH, lblToDoList);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnGoHome, -10, SpringLayout.EAST, contentPane);
+		btnGoHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				OrganizerHome homePage = new OrganizerHome();
+				homePage.setVisible(true);
+				contentPane.setVisible(false);
+				dispose();
+			}
+		});
 		contentPane.add(btnGoHome);
 		
 		JButton btnNewButton = new JButton("Add New Task");
+		sl_contentPane.putConstraint(SpringLayout.EAST, list, -6, SpringLayout.WEST, btnNewButton);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton, 21, SpringLayout.SOUTH, btnGoHome);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String s = (String)JOptionPane.showInputDialog(contentPane, "What is your task?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
+				if ((s!=null) && (s.length()>0)) {
+					controller.addTask(s);
+					return;
+				}
+			}
+		});
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, -33, SpringLayout.EAST, contentPane);
 		contentPane.add(btnNewButton);
 		
 		JButton btnDeleteTask = new JButton("Delete Task");
+		btnDeleteTask.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				controller.removeCourse(list.getSelectedIndex());
+			}
+		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnDeleteTask, 22, SpringLayout.SOUTH, btnNewButton);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnDeleteTask, 0, SpringLayout.WEST, btnNewButton);
 		contentPane.add(btnDeleteTask);
 		
-		JButton btnChangeCurrentTask = new JButton("Change Current Task ");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnChangeCurrentTask, 23, SpringLayout.SOUTH, btnDeleteTask);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnChangeCurrentTask, 0, SpringLayout.EAST, btnGoHome);
-		contentPane.add(btnChangeCurrentTask);
+		JCheckBox chckbxUrgent = new JCheckBox("Urgent?");
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnGoHome, 0, SpringLayout.WEST, chckbxUrgent);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxUrgent, 18, SpringLayout.SOUTH, btnDeleteTask);
+		contentPane.add(chckbxUrgent);
+		
+		JCheckBox chckbxCompleted = new JCheckBox("Completed?");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxCompleted, 20, SpringLayout.SOUTH, chckbxUrgent);
+		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxUrgent, 0, SpringLayout.WEST, chckbxCompleted);
+		sl_contentPane.putConstraint(SpringLayout.EAST, chckbxCompleted, -52, SpringLayout.EAST, contentPane);
+		contentPane.add(chckbxCompleted);
+		
 	}
 
 }

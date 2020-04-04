@@ -15,7 +15,7 @@ public class Course {
 	LocalTime[] courseMeetingTime; 
 	ArrayList<ScheduleUnit> courseSchedule;
 	
-	public Course(String courseName) {
+	public Course(String courseName) { 
 		this.courseName = courseName;
 		this.courseMeetingDays = new ArrayList<String>();
 		this.courseMeetingTime = new LocalTime[2];

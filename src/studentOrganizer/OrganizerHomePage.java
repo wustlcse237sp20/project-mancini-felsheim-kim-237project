@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class OrganizerHomePage {
@@ -62,7 +63,7 @@ public class OrganizerHomePage {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.dispose();
+				frame.dispose(); 
 				OrganizerListPage listPage = new OrganizerListPage();
 				listPage.setVisible(true);
 			}
@@ -75,8 +76,8 @@ public class OrganizerHomePage {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.setVisible(false);
-				OrganizerClassesPage classesPage = new OrganizerClassesPage();
+				frame.dispose();
+				OrganizerClassPage classesPage = new OrganizerClassPage();
 				classesPage.setVisible(true);
 			}
 		});
@@ -87,12 +88,17 @@ public class OrganizerHomePage {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("Schedule");
+		String [] dayOptions = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.dispose();
-				OrganizerSchedulePage schedulePage = new OrganizerSchedulePage();
-				schedulePage.setVisible(true);
+				String s = (String)JOptionPane.showInputDialog(null, "What day do you want to view?", "Customized dialog", JOptionPane.QUESTION_MESSAGE, null, dayOptions, dayOptions[0]);
+				if (s=="Monday") {
+					frame.dispose();
+					MondaySchedule schedulePage = new MondaySchedule();
+					schedulePage.setVisible(true);
+				}
+				
 			}
 		});
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1_1, 232, SpringLayout.WEST, frame.getContentPane());

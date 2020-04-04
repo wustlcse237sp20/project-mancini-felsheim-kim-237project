@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class OrganizerGradePage extends JFrame {
 
@@ -57,25 +59,27 @@ public class OrganizerGradePage extends JFrame {
 		contentPane.add(list);
 		
 		JButton btnGoHome = new JButton("Go Home");
+		btnGoHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				OrganizerHome homePage = new OrganizerHome();
+				homePage.setVisible(true);
+				contentPane.setVisible(false);
+				dispose();
+			}
+		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnGoHome, 10, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnGoHome, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(btnGoHome);
 		
-		JButton btnNewButton = new JButton("Add Class to Gradebook");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton, 19, SpringLayout.SOUTH, btnGoHome);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, -28, SpringLayout.EAST, contentPane);
+		JButton btnNewButton = new JButton("Add Class with Grade Information");
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, 0, SpringLayout.EAST, contentPane);
 		contentPane.add(btnNewButton);
 		
-		JButton btnChangeExistingClass = new JButton("Change Information for Existing Class");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnChangeExistingClass, 21, SpringLayout.SOUTH, btnNewButton);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnChangeExistingClass, 50, SpringLayout.SOUTH, btnNewButton);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnChangeExistingClass, -10, SpringLayout.EAST, contentPane);
-		btnChangeExistingClass.setFont(new Font("Kohinoor Telugu", Font.PLAIN, 11));
-		contentPane.add(btnChangeExistingClass);
-		
-		JButton btnEnterHypotheticalGrades = new JButton("Enter Hypothetical Grades");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEnterHypotheticalGrades, 16, SpringLayout.SOUTH, btnChangeExistingClass);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnEnterHypotheticalGrades, 0, SpringLayout.WEST, btnNewButton);
+		JButton btnEnterHypotheticalGrades = new JButton("Enter Grades For Class");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEnterHypotheticalGrades, 134, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnNewButton, -22, SpringLayout.NORTH, btnEnterHypotheticalGrades);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnEnterHypotheticalGrades, -36, SpringLayout.EAST, contentPane);
 		contentPane.add(btnEnterHypotheticalGrades);
 	}
 }

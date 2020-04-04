@@ -12,13 +12,15 @@ import java.awt.Font;
 import java.awt.Window;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class OrganizerClassesPage extends JFrame {
+public class OrganizerClassPage extends JFrame {
 
 	private JPanel contentPane;
+	private ClassController controller;
 
 	/**
 	 * Launch the application.
@@ -27,10 +29,10 @@ public class OrganizerClassesPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					OrganizerClassesPage frame = new OrganizerClassesPage();
+					OrganizerClassPage frame = new OrganizerClassPage();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					e.printStackTrace(); 
 				}
 			}
 		});
@@ -39,7 +41,7 @@ public class OrganizerClassesPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OrganizerClassesPage() {
+	public OrganizerClassPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -56,7 +58,8 @@ public class OrganizerClassesPage extends JFrame {
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		contentPane.add(lblNewLabel);
 		
-		JList list = new JList();
+		controller = new ClassController();
+		JList list = new JList(controller.getAllCourses());
 		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 6, SpringLayout.SOUTH, lblNewLabel);
 		sl_contentPane.putConstraint(SpringLayout.WEST, list, 0, SpringLayout.WEST, lblNewLabel);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -34, SpringLayout.SOUTH, contentPane);
@@ -64,6 +67,16 @@ public class OrganizerClassesPage extends JFrame {
 		contentPane.add(list);
 		
 		JButton btnNewButton = new JButton("Add Class");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String s = (String)JOptionPane.showInputDialog(contentPane, "What is your course's name?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
+				if ((s!=null) && (s.length()>0)) {
+					controller.addCourse(s);
+					return;
+				}
+			}
+		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton, 67, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton, -135, SpringLayout.EAST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnNewButton, 128, SpringLayout.NORTH, contentPane);
@@ -71,6 +84,12 @@ public class OrganizerClassesPage extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Remove Class");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				controller.removeCourse(list.getSelectedIndex());
+			}
+		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton_1, 34, SpringLayout.SOUTH, btnNewButton);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, btnNewButton);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -45, SpringLayout.SOUTH, contentPane);
@@ -81,9 +100,9 @@ public class OrganizerClassesPage extends JFrame {
 		btnGoHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				contentPane.setVisible(false);
-				OrganizerHomePage homePage = new OrganizerHomePage();
-				
+				OrganizerHome homePage = new OrganizerHome();
+				homePage.setVisible(true);
+				dispose();
 			}
 		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnGoHome, 4, SpringLayout.NORTH, lblNewLabel);
