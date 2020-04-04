@@ -1,9 +1,10 @@
 package studentOrganizer;
 
-import java.util.*;
-
 import javax.swing.DefaultListModel;
 
+/**
+ * ClassController is a mediator between the main course model and the user interface
+ */
 public class ClassController {
 	
 	private DefaultListModel<String> classes;
@@ -30,6 +31,7 @@ public class ClassController {
 	public void removeCourse(int index) {
 		classes.remove(index);
 	}
+	
 	public DefaultListModel<String> getAllCourses(){
 		return classes;
 	}

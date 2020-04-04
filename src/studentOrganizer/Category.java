@@ -1,15 +1,13 @@
 package studentOrganizer;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 // examples of categories: Exams, HW, Project, Studio
 public class Category {
 	String name;
 	double weight;
-	double grade; // need to keep updating grade whenever a new assignment is added
-	Map<String, int[]> assignmentGrades; // int[] are (a, b) pairs, where the student got a out of b points
+	double grade;
+	Map<String, int[]> assignmentGrades; // int[] are [a, b] pairs, where the student got a out of b points
 	
 	public Category(String name, double weight) {
 		this.name = name;

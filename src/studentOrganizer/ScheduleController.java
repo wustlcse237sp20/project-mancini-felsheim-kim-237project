@@ -1,50 +1,62 @@
 package studentOrganizer;
 
-import java.util.*;
-
 import javax.swing.DefaultListModel;
 
+/**
+ * ScheduleController is a mediator between the main schedule model and the user interface
+ */
 public class ScheduleController {
-	private DefaultListModel<Course> classes;
+	private DefaultListModel<Course> events;
 	
 	public ScheduleController() {
-		classes = new DefaultListModel<>();
+		events = new DefaultListModel<>();
 	}
+	
 	public void addCourseMeeting(String name) {
-		classes.addElement(new Course(name));
+		events.addElement(new Course(name));
 	}
+	
 	public void removeCourseMeeting(int index) {
-		classes.remove(index);
+		events.remove(index);
 	}
+	
 	public DefaultListModel<Course> getAllCourses(){
-		return classes;
+		//TODO: implement method
+		return events;
 	}
 	
 	public DefaultListModel<Course> getMondayCourses(){
-		return classes;
+		//TODO: implement method for next iteration
+		return events;
 	}
 
 	public DefaultListModel<Course> getTuesdayCourses(){
-		return classes;
+		//TODO: implement method for next iteration
+		return events;
 	}
 	
 	public DefaultListModel<Course> getWednesdayCourses(){
-		return classes;
+		//TODO: implement method for next iteration
+		return events;
 	}
 	
 	public DefaultListModel<Course> getThursdayCourses(){
-		return classes;
+		//TODO: implement method for next iteration
+		return events;
 	}
 	
 	public DefaultListModel<Course> getFridayCourses(){
-		return classes;
+		//TODO: implement method for next iteration
+		return events;
 	}
 	
 	public DefaultListModel<Course> getSaturdayCourses(){
-		return classes;
+		//TODO: implement method for next iteration
+		return events;
 	}
 	
 	public DefaultListModel<Course> getSundayCourses(){
-		return classes;
+		//TODO: implement method for next iteration
+		return events;
 	}
 }
