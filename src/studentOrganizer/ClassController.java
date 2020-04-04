@@ -19,7 +19,8 @@ public class ClassController {
 	}
 	
 	public void addTask(String name) {
-		tasks.addElement(name);  
+		Task task = new Task(name);
+		tasks.addElement(task.getTaskDescription());  
 	}
 	
 	public void removeTask(int index) {
@@ -36,5 +37,6 @@ public class ClassController {
 	public DefaultListModel<String> getAllTasks(){
 		return tasks;
 	}
+	
 
 }

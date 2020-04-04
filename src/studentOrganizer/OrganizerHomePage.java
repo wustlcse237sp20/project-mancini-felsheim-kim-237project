@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 public class OrganizerHomePage {
 
 	private JFrame frame;
+	private ClassController classController;
+	private ScheduleController scheduleController;
 
 	/**
 	 * Launch the application.

@@ -45,7 +45,7 @@ public class AllInOne {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 950, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
@@ -90,17 +90,18 @@ public class AllInOne {
 		
 		JLabel lblTodo = new JLabel("ToDo:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblTodo, 0, SpringLayout.NORTH, lblClasses);
+		springLayout.putConstraint(SpringLayout.WEST, lblTodo, 149, SpringLayout.EAST, lblClasses);
 		frame.getContentPane().add(lblTodo);
 		
 		JList list_1 = new JList(controller.getAllTasks());
-		springLayout.putConstraint(SpringLayout.WEST, lblTodo, 0, SpringLayout.WEST, list_1);
+		springLayout.putConstraint(SpringLayout.EAST, list_1, 347, SpringLayout.EAST, list);
 		springLayout.putConstraint(SpringLayout.NORTH, list_1, 0, SpringLayout.NORTH, list);
 		springLayout.putConstraint(SpringLayout.WEST, list_1, 43, SpringLayout.EAST, list);
 		springLayout.putConstraint(SpringLayout.SOUTH, list_1, 0, SpringLayout.SOUTH, list);
-		springLayout.putConstraint(SpringLayout.EAST, list_1, -89, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(list_1);
 		
 		JButton btnAddTask = new JButton("Add Task");
+		springLayout.putConstraint(SpringLayout.NORTH, btnAddTask, 6, SpringLayout.SOUTH, list_1);
 		btnAddTask.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -111,7 +112,6 @@ public class AllInOne {
 				}
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnAddTask, 6, SpringLayout.SOUTH, list_1);
 		springLayout.putConstraint(SpringLayout.WEST, btnAddTask, 0, SpringLayout.WEST, lblTodo);
 		frame.getContentPane().add(btnAddTask);
 		
@@ -129,7 +129,6 @@ public class AllInOne {
 		
 		JCheckBox chckbxUrgent = new JCheckBox("Urgent?");
 		springLayout.putConstraint(SpringLayout.NORTH, chckbxUrgent, 6, SpringLayout.SOUTH, btnRemoveTask);
-		springLayout.putConstraint(SpringLayout.EAST, chckbxUrgent, -167, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(chckbxUrgent);
 		
 		JCheckBox chckbxCompleted = new JCheckBox("Completed?");
@@ -138,6 +137,8 @@ public class AllInOne {
 		frame.getContentPane().add(chckbxCompleted);
 		
 		JButton btnCalculateGpa = new JButton("Calculate GPA");
+		springLayout.putConstraint(SpringLayout.WEST, chckbxUrgent, 63, SpringLayout.EAST, btnCalculateGpa);
+		springLayout.putConstraint(SpringLayout.EAST, chckbxUrgent, 142, SpringLayout.EAST, btnCalculateGpa);
 		springLayout.putConstraint(SpringLayout.NORTH, btnCalculateGpa, 2, SpringLayout.SOUTH, btnRemoveClass);
 		springLayout.putConstraint(SpringLayout.WEST, btnCalculateGpa, 10, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(btnCalculateGpa);
