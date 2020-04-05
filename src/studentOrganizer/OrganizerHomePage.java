@@ -6,14 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 public class OrganizerHomePage {
 
 	private JFrame frame;
@@ -97,39 +94,39 @@ public class OrganizerHomePage {
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String s = (String)JOptionPane.showInputDialog(null, "What day do you want to view?", "Customized dialog", JOptionPane.QUESTION_MESSAGE, null, dayOptions, dayOptions[0]);
-				if (s=="Monday") {
+				String day = (String)JOptionPane.showInputDialog(null, "What day do you want to view?", "Customized dialog", JOptionPane.QUESTION_MESSAGE, null, dayOptions, dayOptions[0]);
+				if (day=="Monday") {
 					MondaySchedule schedulePage = new MondaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
 					frame.dispose();
 				}
-				else if (s=="Tuesday") {
+				else if (day=="Tuesday") {
 					TuesdaySchedule schedulePage = new TuesdaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
 					frame.dispose();
 				}
-				else if (s=="Wednesday") {
+				else if (day=="Wednesday") {
 					WednesdaySchedule schedulePage = new WednesdaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
 					frame.dispose();
 				}
-				else if (s=="Thursday") {
+				else if (day=="Thursday") {
 					ThursdaySchedule schedulePage = new ThursdaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
 					frame.dispose();
 				}
-				else if (s=="Friday") {
+				else if (day=="Friday") {
 					FridaySchedule schedulePage = new FridaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
 					frame.dispose();
 				}
-				else if (s=="Saturday") {
+				else if (day=="Saturday") {
 					SaturdaySchedule schedulePage = new SaturdaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
 					frame.dispose();
 					
 				}
-				else if (s=="Sunday") {
+				else if (day=="Sunday") {
 					SundaySchedule schedulePage = new SundaySchedule(scheduleController, classController);
 					schedulePage.setVisible(true);
 					frame.dispose();

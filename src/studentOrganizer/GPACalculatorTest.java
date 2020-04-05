@@ -3,6 +3,10 @@ package studentOrganizer;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Note: Acts as a test for methods in both Category.java and GPACalculator.java
+ *       because methods from GPACalculator call all methods from Category
+ */
 public class GPACalculatorTest {
 	GPACalculator calculator = new GPACalculator();
 	
@@ -36,13 +40,11 @@ public class GPACalculatorTest {
     
     @Test
     void testCalculateCourseGrade() {
-    	// setup
     	calculator.addCategory("HW", 0.5);
     	calculator.addCategory("Exams", 0.5);
     	calculator.addAssignmentGrade("HW", "HW1", 8, 10);
     	calculator.addAssignmentGrade("Exams", "Exam1", 50, 100);
 
-    	// test
     	System.out.println(calculator.calculateCourseGrade());
     	Assert.assertTrue(calculator.calculateCourseGrade() == (0.5*8/10+0.5*50/100));
     }

@@ -1,8 +1,6 @@
 package studentOrganizer;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +9,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -20,9 +17,6 @@ import javax.swing.JCheckBox;
 public class OrganizerListPage extends JFrame {
 
 	private JPanel contentPane;
-	private ClassController classController;
-	private ScheduleController scheduleController;
-
 
 	/**
 	 * Launch the application.
@@ -43,8 +37,7 @@ public class OrganizerListPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OrganizerListPage() {
-	}
+	public OrganizerListPage() {}
 	
 	public OrganizerListPage(ClassController classController, ScheduleController scheduleController) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

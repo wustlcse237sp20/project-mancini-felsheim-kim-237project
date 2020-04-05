@@ -1,15 +1,12 @@
 package studentOrganizer;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,8 +15,6 @@ import java.awt.Font;
 public class FridaySchedule extends JFrame {
 
 	private JPanel contentPane;
-	private ClassController classController;
-	private ScheduleController scheduleController;
 
 	/**
 	 * Launch the application.
@@ -40,8 +35,7 @@ public class FridaySchedule extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FridaySchedule() {
-	}
+	public FridaySchedule() {}
 	
 	public FridaySchedule(ScheduleController scheduleController, ClassController classController) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +53,7 @@ public class FridaySchedule extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblTodaysSchedule, 29, SpringLayout.WEST, contentPane);
 		contentPane.add(lblTodaysSchedule);
 		
-		JList list = new JList(scheduleController.getMondayCourses());
+		JList list = new JList(scheduleController.getFridayCourses());
 		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 43, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -28, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblTodaysSchedule, -6, SpringLayout.NORTH, list);
@@ -80,7 +74,6 @@ public class FridaySchedule extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnGoHome, 5, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnGoHome, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(btnGoHome);
-		String [] dayOptions = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 	}
 
 }

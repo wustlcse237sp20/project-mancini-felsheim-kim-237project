@@ -35,7 +35,8 @@ public class Schedule {
 	public ArrayList<String> getScheduleSentencesForDay(String day) {
 		ArrayList<String> scheduleSentences = new ArrayList<String>();
 		for (ScheduleUnit event: schedule.get(day)) {
-			String sentence = event.getEventTitle() + " from " + event.getStartTimeAsString() + " to " + event.getEndTimeAsString();
+			String sentence = event.getEventTitle() + " from " + event.getStartTimeAsString() 
+							  + " to " + event.getEndTimeAsString();
 			scheduleSentences.add(sentence);
 		}
 		return scheduleSentences;
