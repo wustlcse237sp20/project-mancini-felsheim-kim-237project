@@ -1,10 +1,13 @@
-package studentOrganizer;
+package tests;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import studentOrganizer.Schedule;
+import studentOrganizer.ScheduleUnit;
 
 class ScheduleTest {
 	Schedule schedule = new Schedule();

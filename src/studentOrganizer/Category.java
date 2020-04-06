@@ -15,6 +15,18 @@ public class Category {
 		this.assignmentGrades = new HashMap<String, int[]>();
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
+	public double getWeight() {
+		return weight;
+	}
+	
+	public Map<String, int[]> getAssignmentGrades() {
+		return assignmentGrades;
+	}
+	
 	public void addAssignmentGrade(String name, int points, int outOf) {
 		int[] assignmentGrade = {points, outOf};
 		this.assignmentGrades.put(name, assignmentGrade);

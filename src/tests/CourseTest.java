@@ -1,7 +1,9 @@
-package studentOrganizer;
+package tests;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import studentOrganizer.Course;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
