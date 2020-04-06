@@ -1,7 +1,9 @@
-package studentOrganizer;
+package tests;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import studentOrganizer.Task;
 
 class TaskTest {
 	Task task = new Task("Study for biology test", false);

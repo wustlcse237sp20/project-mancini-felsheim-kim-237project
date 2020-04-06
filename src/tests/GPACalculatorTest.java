@@ -1,7 +1,9 @@
-package studentOrganizer;
+package tests;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import studentOrganizer.GPACalculator;
 
 /**
  * Note: Acts as a test for methods in both Category.java and GPACalculator.java
@@ -14,8 +16,8 @@ public class GPACalculatorTest {
     void testAddCategory() {
     	calculator.addCategory("HW", 0.3);
     
-        Assert.assertEquals(calculator.getCategories().get(0).name, "HW");
-        Assert.assertTrue(calculator.getCategories().get(0).weight == 0.3);
+        Assert.assertEquals(calculator.getCategories().get(0).getName(), "HW");
+        Assert.assertTrue(calculator.getCategories().get(0).getWeight() == 0.3);
     }
     
     @Test
@@ -24,8 +26,8 @@ public class GPACalculatorTest {
 
     	calculator.addAssignmentGrade("HW", "HW1", 8, 10);
 
-    	Assert.assertEquals(calculator.getCategories().get(0).assignmentGrades.get("HW1")[0], 8);
-    	Assert.assertEquals(calculator.getCategories().get(0).assignmentGrades.get("HW1")[1], 10);
+    	Assert.assertEquals(calculator.getCategories().get(0).getAssignmentGrades().get("HW1")[0], 8);
+    	Assert.assertEquals(calculator.getCategories().get(0).getAssignmentGrades().get("HW1")[1], 10);
     }
     
     @Test
@@ -35,7 +37,7 @@ public class GPACalculatorTest {
 
     	calculator.deleteAssignmentGrade("HW", "HW1");
 
-    	Assert.assertTrue(calculator.getCategories().get(0).assignmentGrades.isEmpty());
+    	Assert.assertTrue(calculator.getCategories().get(0).getAssignmentGrades().isEmpty());
     }
     
     @Test
