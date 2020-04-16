@@ -35,4 +35,8 @@ Commands needed to compile and run our code from the command line:
 2. Run the command "javac studentOrganizer/*.java"
 3. Run the command "java studentOrganizer/OrganizerHomePage"
 
-
+*Updated for Iteration 2:
+If you run into issues running the program in the command line, try installing the latest JDK.  For Mac or Linux, you can download the latest JDK here:
+https://www.oracle.com/java/technologies/javase-jdk14-downloads.html
+For Windows, go here:
+https://www.oracle.com/java/technologies/javase-jdk14-downloads.html
