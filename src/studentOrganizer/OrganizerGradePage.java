@@ -3,7 +3,14 @@ package studentOrganizer;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTree;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -14,6 +21,7 @@ import java.awt.event.MouseEvent;
 public class OrganizerGradePage extends JFrame {
 
 	private JPanel contentPane;
+	private JTree tree;
 
 	/**
 	 * Launch the application.
@@ -30,7 +38,8 @@ public class OrganizerGradePage extends JFrame {
 			}
 		});
 	}
-
+	
+	
 	/**
 	 * Create the frame.
 	 */
@@ -50,12 +59,36 @@ public class OrganizerGradePage extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblYourClassGrades, 25, SpringLayout.WEST, contentPane);
 		contentPane.add(lblYourClassGrades);
 		
-		JList list = new JList();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 11, SpringLayout.SOUTH, lblYourClassGrades);
-		sl_contentPane.putConstraint(SpringLayout.WEST, list, 15, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, 196, SpringLayout.SOUTH, lblYourClassGrades);
-		sl_contentPane.putConstraint(SpringLayout.EAST, list, 180, SpringLayout.WEST, contentPane);
-		contentPane.add(list);
+		// ** do JTree
+		// create nodes out of classes
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Courses");
+		for(Object course : classController.getAllCourses().toArray()) {
+		    root.add(new DefaultMutableTreeNode(course.toString()));
+		}
+	    this.tree = new JTree(root);
+
+	    // add tree to frame
+		sl_contentPane.putConstraint(SpringLayout.NORTH, tree, 11, SpringLayout.SOUTH, lblYourClassGrades);
+		sl_contentPane.putConstraint(SpringLayout.WEST, tree, 15, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, tree, 196, SpringLayout.SOUTH, lblYourClassGrades);
+		sl_contentPane.putConstraint(SpringLayout.EAST, tree, 180, SpringLayout.WEST, contentPane);
+	    contentPane.add(tree);
+	    
+//		JList list = new JList(classController.getAllCourses());
+//		list.addListSelectionListener(new ListSelectionListener() {
+//		    public void valueChanged(ListSelectionEvent event) {
+//		        if (!event.getValueIsAdjusting()){
+//		            JList source = (JList)event.getSource();
+//		            String selected = source.getSelectedValue().toString();
+//		            System.out.println("selected: " + selected);
+//		        }
+//		    }
+//		});
+//		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 11, SpringLayout.SOUTH, lblYourClassGrades);
+//		sl_contentPane.putConstraint(SpringLayout.WEST, list, 15, SpringLayout.WEST, contentPane);
+//		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, 196, SpringLayout.SOUTH, lblYourClassGrades);
+//		sl_contentPane.putConstraint(SpringLayout.EAST, list, 180, SpringLayout.WEST, contentPane);
+//		contentPane.add(list);
 		
 		JButton btnGoHome = new JButton("Go Home");
 		btnGoHome.addMouseListener(new MouseAdapter() {
@@ -72,6 +105,15 @@ public class OrganizerGradePage extends JFrame {
 		contentPane.add(btnGoHome);
 		
 		JButton btnNewButton = new JButton("Add Class with Grade Information");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+//				OrganizerHome homePage = new OrganizerHome(classController, scheduleController);
+//				homePage.setVisible(true);
+				contentPane.setVisible(false);
+				dispose();
+			}
+		});
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, 0, SpringLayout.EAST, contentPane);
 		contentPane.add(btnNewButton);
 		
