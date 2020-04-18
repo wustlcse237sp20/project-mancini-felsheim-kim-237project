@@ -1,5 +1,6 @@
 package studentOrganizer;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,6 +27,23 @@ public class Schedule {
 			currentSchedule.add(event);
 			this.schedule.put(day, currentSchedule);
 		}
+		sortAllEventsInScheduleByTime();
+	}
+	
+	public void addEventToSchedule(ScheduleUnit event) {
+		String day = event.getWeekday();
+		ArrayList<ScheduleUnit> currentSchedule = this.schedule.get(day);
+		currentSchedule.add(event);
+		this.schedule.put(day, currentSchedule);
+		sortAllEventsInScheduleByTime();
+	}
+	
+	public void addEventToSchedule(String eventTitle, String weekday, LocalTime[] meetingTime) {
+		ScheduleUnit event = new ScheduleUnit(eventTitle, weekday, meetingTime);
+		ArrayList<ScheduleUnit> currentSchedule = this.schedule.get(weekday);
+		currentSchedule.add(event);
+		this.schedule.put(weekday, currentSchedule);
+		sortAllEventsInScheduleByTime();
 	}
 	
 	public ArrayList<ScheduleUnit> getScheduleUnitsForDay(String day) {
