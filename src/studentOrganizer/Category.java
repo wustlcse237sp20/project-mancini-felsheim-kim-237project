@@ -47,5 +47,10 @@ public class Category {
 		}
 		return points/outOf;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 
 }
