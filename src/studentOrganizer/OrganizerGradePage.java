@@ -22,7 +22,7 @@ public class OrganizerGradePage extends JFrame {
 
 	private JPanel contentPane;
 	private JTree tree;
- 
+  
 	/**
 	 * Launch the application.
 	 */
