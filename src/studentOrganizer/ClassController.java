@@ -20,7 +20,7 @@ public class ClassController {
 		classes = new DefaultListModel<>();
 		tasks = new DefaultListModel<>();
 		//gpaCalculator = new GPACalculator();
-		DefaultTreeModel GPAModel = new DefaultTreeModel(new DefaultMutableTreeNode("Classes"));
+		DefaultTreeModel GPAModel = new DefaultTreeModel(new DefaultMutableTreeNode(new GPACalculator()));
 		root = (DefaultMutableTreeNode) GPAModel.getRoot();
 	}
 	public void addCourse(String name) {
@@ -63,8 +63,13 @@ public class ClassController {
 	}
 	
 	public void addCategory(DefaultMutableTreeNode classNode, String categoryName, double categoryWeight) {
+		((GPACalculator)root.getUserObject()).addCategory(categoryName, categoryWeight);
 		classNode.add(new DefaultMutableTreeNode(new Category(categoryName, categoryWeight)));
-		//gpaCalculator.addCategory(categoryName, categoryWeight);
+	}
+	
+	public void addAssignment(DefaultMutableTreeNode categoryNode, String assignmentName, int points, int outOf) {
+		((Category)categoryNode.getUserObject()).addAssignmentGrade(assignmentName, points, outOf);
+		categoryNode.add(new DefaultMutableTreeNode(assignmentName+"   "+(((int)(((double)points/outOf)*10000)))/10000.0));
 	}
 	
 

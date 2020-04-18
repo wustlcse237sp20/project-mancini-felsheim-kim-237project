@@ -142,8 +142,8 @@ public class OrganizerGradePage extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnGoHome, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(btnGoHome);
 		
-		JButton btnNewButton = new JButton("Add Grade Information to Class");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnEnterCategoryInfo = new JButton("Enter Category Information to Class");
+		btnEnterCategoryInfo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -185,13 +185,58 @@ public class OrganizerGradePage extends JFrame {
 				}
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, 0, SpringLayout.EAST, contentPane);
-		contentPane.add(btnNewButton);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnEnterCategoryInfo, 8, SpringLayout.EAST, contentPane);
+		contentPane.add(btnEnterCategoryInfo);
 		
-		JButton btnEnterHypotheticalGrades = new JButton("Enter Grades For Class");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEnterHypotheticalGrades, 134, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnNewButton, -22, SpringLayout.NORTH, btnEnterHypotheticalGrades);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnEnterHypotheticalGrades, -36, SpringLayout.EAST, contentPane);
-		contentPane.add(btnEnterHypotheticalGrades);
+		JButton btnEnterAssignmentGrade = new JButton("Add Assignment Grade to Class");
+		btnEnterAssignmentGrade.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// if the selected node in the tree was a course
+				//if(selectedNode == Course)
+				JTextField assignmentName = new JTextField();
+				JTextField points = new JTextField();
+				JTextField outOf = new JTextField();
+				Object[] message = {
+				    "Assignment name:", assignmentName,
+				    "Points:", points,
+				    "Out of:", outOf
+				};
+
+				int option = JOptionPane.showConfirmDialog(null, message, "Add a category to a course", JOptionPane.OK_CANCEL_OPTION);
+				if (option == JOptionPane.OK_OPTION) {
+				    if (!assignmentName.getText().equals("") && !points.getText().equals("") && !outOf.getText().equals("")) {
+				        // !! check if selectedNode is null; if it is, tell user to select a course
+				        // if I first select, then unselect, it is null
+				        
+				        if(selectedNode != null) {
+					        System.out.println("Assignment added");
+					        
+				        	// add Category to JTree's model
+					        classController.addAssignment(selectedNode, assignmentName.getText(), Integer.parseInt(points.getText()), Integer.parseInt(outOf.getText()));
+				        	DefaultTreeModel model = (DefaultTreeModel)tree.getModel();				        
+					        model.reload(selectedNode);
+					        //model.setRoot(classController.getRoot());
+				        	
+//					        classController.addCategory(selectedNode, categoryName.getText(), Double.parseDouble(categoryWeight.getText()));
+//					        classController.getGPAModel().reload(selectedNode);
+				        	
+				        	// add Category to the model
+				        	//!! sanitize input
+				        }
+				    } else {
+				        System.out.println("Please enter input");
+				    }
+				} else {
+				    System.out.println("Assignment adding canceled");
+				}
+			}
+		});
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEnterAssignmentGrade, 134, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnEnterCategoryInfo, -22, SpringLayout.NORTH, btnEnterAssignmentGrade);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnEnterAssignmentGrade, -4, SpringLayout.EAST, contentPane);
+		//sl_contentPane.putConstraint(SpringLayout.EAST, btnEnterAssignmentGrade, 0, SpringLayout.EAST, contentPane);
+
+		contentPane.add(btnEnterAssignmentGrade);
 	}
 }
