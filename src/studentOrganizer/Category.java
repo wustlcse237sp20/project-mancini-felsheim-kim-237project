@@ -4,10 +4,10 @@ import java.util.Map;
 
 // examples of categories: Exams, HW, Project, Studio
 public class Category {
-	String name;
-	double weight;
-	double grade; // need to keep updating grade whenever a new assignment is added
-	Map<String, int[]> assignmentGrades; // int[] are [a, b] pairs, where the student got a out of b points
+	private String name;
+	private double weight;
+	private double grade; // need to keep updating grade whenever a new assignment is added
+	private Map<String, int[]> assignmentGrades; // int[] are [a, b] pairs, where the student got a out of b points
 	
 	public Category(String name, double weight) {
 		this.name = name;
@@ -46,6 +46,11 @@ public class Category {
 			outOf += this.assignmentGrades.get(name)[1];
 		}
 		return points/outOf;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
 	}
 
 }

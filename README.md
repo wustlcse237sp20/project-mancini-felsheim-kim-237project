@@ -31,8 +31,12 @@ Implemented features that don't currently work:
 - Hint: sometimes you have to click a button twice for it to work!
 
 Commands needed to compile and run our code from the command line:
-1. Navigate to the folder containing the packages "studentOrganizer" and "tests".  This can be done by: (a) cloning the project into Eclipse, (b) clicking on the project folder in the left window, (c) control+c (command+c) to copy the path of this project, (d) opening up terminal and typing "cd ", (e) control+v to paste the path name, (f) enter
+1. Navigate to the "src" folder containing the packages "studentOrganizer" and "tests". This can be done by cloning the project from Github, and using "cd" to go into the "src" folder. If you type "ls" here, you should see the packages "studentOrganizer" and "tests".
 2. Run the command "javac studentOrganizer/*.java"
 3. Run the command "java studentOrganizer/OrganizerHomePage"
 
-
+*Updated for Iteration 2:
+If you run into issues running the program in the command line, try installing the latest JDK.  For Mac or Linux, you can download the latest JDK here:
+https://www.oracle.com/java/technologies/javase-jdk14-downloads.html
+For Windows, go here:
+https://www.oracle.com/java/technologies/javase-jdk14-downloads.html
