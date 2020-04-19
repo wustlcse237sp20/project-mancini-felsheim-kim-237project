@@ -53,7 +53,7 @@ public class WednesdaySchedule extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblTodaysSchedule, 29, SpringLayout.WEST, contentPane);
 		contentPane.add(lblTodaysSchedule);
 		
-		JList list = new JList(scheduleController.getWednesdayCourses());
+		JList list = new JList(scheduleController.getEventsByDay("Wednesday"));
 		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 43, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -28, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblTodaysSchedule, -6, SpringLayout.NORTH, list);
