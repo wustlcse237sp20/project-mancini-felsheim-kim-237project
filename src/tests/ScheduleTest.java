@@ -1,7 +1,6 @@
 package tests;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -13,16 +12,10 @@ class ScheduleTest {
 	Schedule schedule = new Schedule();
 	
 
-	/*@Test
-	void testAddEventsToSchedule() {
-		ScheduleUnit event1 = new ScheduleUnit("Bio lecture", "Tuesday", 
-				new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
-		ScheduleUnit event2 = new ScheduleUnit("Bio lecture", "Thursday", 
-				new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
-		ArrayList<ScheduleUnit> events = new ArrayList<ScheduleUnit>();
-		events.add(event1);
-		events.add(event2);
-		schedule.addEventsToSchedule(events);
+	@Test
+	void testAddEventToSchedule() {
+		schedule.addEventToSchedule("Bio lecture", "Tuesday", new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
+		schedule.addEventToSchedule("Bio lecture", "Thursday", new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
 		Assert.assertEquals(schedule.getScheduleUnitsForDay("Tuesday").get(0).getEventTitle(), "Bio lecture");
 		Assert.assertEquals(schedule.getScheduleUnitsForDay("Thursday").get(0).getEventTitle(), "Bio lecture");
 
@@ -30,32 +23,30 @@ class ScheduleTest {
 	
 	@Test
 	void testGetScheduleSentencesForDay() {
-		ScheduleUnit event1 = new ScheduleUnit("Bio lecture", "Tuesday", 
-				new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
-		ScheduleUnit event2 = new ScheduleUnit("Bio lecture", "Thursday", 
-				new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
-		ArrayList<ScheduleUnit> events = new ArrayList<ScheduleUnit>();
-		events.add(event1);
-		events.add(event2);
-		schedule.addEventsToSchedule(events);
+		schedule.addEventToSchedule("Bio lecture", "Tuesday", new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
+		schedule.addEventToSchedule("Bio lecture", "Thursday", new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
 		Assert.assertEquals(schedule.getScheduleSentencesForDay("Tuesday").get(0), "Bio lecture from 11:30 to 13:00");
+		Assert.assertEquals(schedule.getScheduleSentencesForDay("Thursday").get(0), "Bio lecture from 11:30 to 13:00");
+	}
+	
+	@Test
+	void testGetScheduleUnitByIndexAndDay() {
+		schedule.addEventToSchedule("Bio lecture", "Tuesday", new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
+		schedule.addEventToSchedule("Chem lecture", "Tuesday", new LocalTime[]{LocalTime.of(15, 0), LocalTime.of(16, 0)});
+		Assert.assertEquals(schedule.getScheduleUnitByIndexAndDay("Tuesday", 0).getEventTitle(), "Bio lecture");
+		Assert.assertEquals(schedule.getScheduleUnitByIndexAndDay("Tuesday", 1).getEventTitle(), "Chem lecture");
 	}
 	
 	@Test 
 	void testSortAllEventsInScheduleByTime() {
-		ScheduleUnit event1 = new ScheduleUnit("Bio lecture", "Tuesday", 
-				new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
-		ScheduleUnit event2 = new ScheduleUnit("Chem lecture", "Tuesday", 
-				new LocalTime[]{LocalTime.of(10, 00), LocalTime.of(12, 0)});
-		ArrayList<ScheduleUnit> events = new ArrayList<ScheduleUnit>();
-		events.add(event1);
-		events.add(event2);
-		schedule.addEventsToSchedule(events);
-		schedule.sortAllEventsInScheduleByTime();
-		Assert.assertEquals(schedule.getScheduleUnitsForDay("Tuesday").get(0).getEventTitle(), "Chem lecture");
-		Assert.assertEquals(schedule.getScheduleUnitsForDay("Tuesday").get(1).getEventTitle(), "Bio lecture");
+		schedule.addEventToSchedule("Bio lecture", "Tuesday", new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
+		schedule.addEventToSchedule("Bio lecture", "Thursday", new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
+		schedule.addEventToSchedule("Math study group", "Tuesday", new LocalTime[]{LocalTime.of(9, 00), LocalTime.of(10, 0)});
+		Assert.assertEquals(schedule.getScheduleSentencesForDay("Tuesday").get(0), "Math study group from 09:00 to 10:00");
+		Assert.assertEquals(schedule.getScheduleSentencesForDay("Tuesday").get(1), "Bio lecture from 11:30 to 13:00");
+		Assert.assertEquals(schedule.getScheduleSentencesForDay("Thursday").get(0), "Bio lecture from 11:30 to 13:00");
 
 
-	}*/
+	}
 
 }

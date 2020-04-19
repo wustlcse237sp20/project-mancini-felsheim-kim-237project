@@ -33,6 +33,10 @@ public class Schedule {
 		sortAllEventsInScheduleByTime();
 	}
 	
+	public ArrayList<ScheduleUnit> getScheduleUnitsForDay(String day) {
+		return schedule.get(day);
+	}
+	
 	public ArrayList<String> getScheduleSentencesForDay(String day) {
 		ArrayList<String> scheduleSentences = new ArrayList<String>();
 		for (ScheduleUnit event: schedule.get(day)) {
@@ -41,6 +45,10 @@ public class Schedule {
 			scheduleSentences.add(sentence);
 		}
 		return scheduleSentences;
+	}
+	
+	public ScheduleUnit getScheduleUnitByIndexAndDay(String day, int index) {
+		return schedule.get(day).get(index);
 	}
 	
 	public void sortAllEventsInScheduleByTime() {

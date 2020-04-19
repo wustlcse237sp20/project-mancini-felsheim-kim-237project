@@ -18,7 +18,11 @@ public class ScheduleController {
 		schedule.addEventToSchedule(eventTitle, weekday, meetingTime);
 	}
 	
-	public void removeEvent(int index) {
+	public ScheduleUnit getEvent(String weekday, int index) {
+		return schedule.getScheduleUnitByIndexAndDay(weekday, index);
+	}
+	
+	public void removeEvent(String weekday, int index) {
 		//TODO: implement for next iteration
 	}
 	

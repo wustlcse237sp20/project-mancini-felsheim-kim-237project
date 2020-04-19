@@ -53,6 +53,11 @@ public class ScheduleUnit implements Comparable<ScheduleUnit> {
 	public int compareTo(ScheduleUnit otherEvent) {
 		return this.startTime.compareTo(otherEvent.getStartTime());
 	}
+	
+	@Override
+	public String toString() {
+		return this.eventTitle;
+	}
  
 	
 }
