@@ -28,12 +28,10 @@ Implemented features that don't currently work:
 - The schedule pages are accessible from the home page, but no class schedules can be added yet.
 - The grade page is accessible from the home page, but the "add class with grade information" and "enter grades for class" buttons are not yet working.
 - The "mark as urgent" and "mark as completed" buttons are not yet working on the modify tasks to-do list page.
-- Hint: sometimes you have to click a button twice for it to work!
 
 # Iteration 2:
 User stories completed this iteration:
 - A student should be able to run the student organizer from a single .sh script on the command line so they can easily run the application.
-- A student should be able to enter a grade that they received in a class and its type so that they can keep track of their final grade.
 - A student should be able to enter a grade that they received in a class and its type so that they can keep track of their final grade.
 - A student should be able to specify the weight breakdown of a class so that the grade calculator can calculate grades with regard to weights.
 - A student should be able to mark a task in the todo-list as completed so that they know it is done.
