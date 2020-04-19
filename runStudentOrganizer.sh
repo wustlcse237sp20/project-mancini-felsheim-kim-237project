@@ -1,2 +1,3 @@
-javac src/studentOrganizer/*.java
-java src/studentOrganizer/OrganizerHomePage
+cd src/
+javac studentOrganizer/*.java
+java studentOrganizer/OrganizerHomePage
