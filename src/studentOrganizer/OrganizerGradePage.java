@@ -107,10 +107,10 @@ public class OrganizerGradePage extends JFrame {
 				JTextField categoryWeight = new JTextField();
 				Object[] message = {
 				    "Category name:", categoryName,
-				    "Category weight:", categoryWeight
+				    "Category weight as a decimal from 0 to 1:", categoryWeight
 				};
 
-				int option = JOptionPane.showConfirmDialog(null, message, "Add a category to a course", JOptionPane.OK_CANCEL_OPTION);
+				int option = JOptionPane.showConfirmDialog(null, message, "Select a Course before Adding a Category", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION) {
 				    if (!categoryName.getText().equals("") && !categoryWeight.getText().equals("")) {
 				        
@@ -144,12 +144,12 @@ public class OrganizerGradePage extends JFrame {
 				JTextField points = new JTextField();
 				JTextField outOf = new JTextField();
 				Object[] message = {
-				    "Assignment name:", assignmentName,
+				    "Assignment name:                                 ", assignmentName,
 				    "Points:", points,
 				    "Out of:", outOf
 				};
 
-				int option = JOptionPane.showConfirmDialog(null, message, "Add a category to a course", JOptionPane.OK_CANCEL_OPTION);
+				int option = JOptionPane.showConfirmDialog(null, message, "Select a Category before Adding an Assignment", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION) {
 				    if (!assignmentName.getText().equals("") && !points.getText().equals("") && !outOf.getText().equals("")) {
 				        
