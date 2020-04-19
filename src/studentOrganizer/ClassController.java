@@ -1,7 +1,5 @@
 package studentOrganizer;
 
-import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 
 /**
@@ -10,7 +8,7 @@ import javax.swing.DefaultListModel;
 public class ClassController {
 	
 	private DefaultListModel<String> classes;
-	private DefaultListModel<Task> tasks;
+	private DefaultListModel<String> tasks;
 	
 	public ClassController() {
 		classes = new DefaultListModel<>();
@@ -21,6 +19,15 @@ public class ClassController {
 		classes.addElement(course.getCourseName()); 
 	}
 	
+	public void addTask(String name) {
+		Task task = new Task(name);
+		tasks.addElement(task.getTaskDescription());  
+	}
+	
+	public void removeTask(int index) {
+		tasks.remove(index);
+	}
+	
 	public void removeCourse(int index) {
 		classes.remove(index);
 	}
@@ -29,35 +36,9 @@ public class ClassController {
 		return classes;
 	}
 	
-	public void addTask(String name) {
-		Task task = new Task(name, false);
-		tasks.addElement(task);  
-	}
-	public void addUrgent(String name) {
-		Task task = new Task(name, true);
-		tasks.addElement(task);  
-	}
-	
-	public void markTaskCompleted(int index) {
-		tasks.get(index).markCompleted();  
-	}
-	
-	public void markTaskUrgent(int index) {
-		tasks.get(index).markUrgent();  
-	}
-	
-	
-	public void removeTask(int index) {
-		tasks.remove(index);
-	}
-	
-	public Task getTask(int index) {
-		return tasks.get(index);
-	}
-	
-	public DefaultListModel<Task> getAllTasks(){
+	public DefaultListModel<String> getAllTasks(){
 		return tasks;
 	}
 	
+
 }
-	

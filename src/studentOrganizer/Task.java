@@ -53,18 +53,5 @@ public class Task {
 	public boolean isCompleted() {
 		return this.completed;
 	}
-	
-	@Override
-	public String toString() {
-		if (this.completed){
-			return "Completed: " + this.taskDescription;
-		}
-		else if (this.urgent) {
-			return "Urgent: " + this.taskDescription;
-		}
-		else {
-			return this.taskDescription;
-		}
-	}
 
 }
