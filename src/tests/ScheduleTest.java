@@ -11,8 +11,9 @@ import studentOrganizer.ScheduleUnit;
 
 class ScheduleTest {
 	Schedule schedule = new Schedule();
+	
 
-	@Test
+	/*@Test
 	void testAddEventsToSchedule() {
 		ScheduleUnit event1 = new ScheduleUnit("Bio lecture", "Tuesday", 
 				new LocalTime[]{LocalTime.of(11, 30), LocalTime.of(13, 0)});
@@ -55,6 +56,6 @@ class ScheduleTest {
 		Assert.assertEquals(schedule.getScheduleUnitsForDay("Tuesday").get(1).getEventTitle(), "Bio lecture");
 
 
-	}
+	}*/
 
 }

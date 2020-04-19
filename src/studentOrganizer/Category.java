@@ -2,7 +2,12 @@ package studentOrganizer;
 import java.util.HashMap;
 import java.util.Map;
 
-// examples of categories: Exams, HW, Project, Studio
+/**
+ * Manages categories of grades to be entered for a class.
+ * Examples of categories: Exams, HW, Project, Studio, etc.
+ * Note: all non-trivial methods are tested in GPACalculatorTest.
+ *
+ */
 public class Category {
 	private String name;
 	private double weight;

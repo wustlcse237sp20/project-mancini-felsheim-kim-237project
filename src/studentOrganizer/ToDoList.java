@@ -3,6 +3,11 @@ package studentOrganizer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Manages a to-do list of tasks for a student.
+ * Test cases for ToDoList can be found in ToDoListTest.
+ *
+ */
 public class ToDoList {
 	
 	ArrayList<Task> toDoList;

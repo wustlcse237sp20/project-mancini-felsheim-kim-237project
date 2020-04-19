@@ -3,20 +3,18 @@ package studentOrganizer;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Manages a students course list.
+ * Note: No test class is provided because all methods are trivial getters and setters.
+ *
+ */
 public class Course {
 	 
 	String courseName;
 	double courseGrade;
-	ArrayList<ScheduleUnit> courseSchedule;
-	ArrayList<String> courseMeetingDays;
-	LocalTime[] courseMeetingTime; // A course meeting time is an array of length 2: index 0 specifies start time
-								   // and index 1 specifies end time
 	
 	public Course(String courseName) { 
 		this.courseName = courseName;
-		this.courseMeetingDays = new ArrayList<String>();
-		this.courseMeetingTime = new LocalTime[2];
-		this.courseSchedule = new ArrayList<ScheduleUnit>();
 	}
 	 
 	public void setCourseName(String courseName) {
@@ -27,31 +25,6 @@ public class Course {
 		this.courseGrade = courseGrade;
 	}
 	
-	/**
-	 * Sets the course schedule given the meeting days and start/end times. Assumes that the course 
-	 * meets at the same times of the day for each weekday it meets.
-	 * @param weekdays ArrayList containing the weekdays (e.g. "Tuesday") that the class meets 
-	 * @param startTime array specifying the start time of the class in hours (index 0) and 
-	 * 		  in minutes (index 1), e.g. a 2:30 PM class would have a startTime of {14,30}
-	 * @param endTime array specifying the end time of the class in hours (index 0) and in
-	 * 		  minutes (index 1), e.g. a class that ends at 4:00 PM would have an endTime of {16, 0}
-	 */
-	public void setCourseSchedule(ArrayList<String> weekdays, int[] startTime, int[] endTime) {
-		this.courseMeetingDays = weekdays;
-		this.courseMeetingTime = new LocalTime[]{LocalTime.of(startTime[0], startTime[1]),
-				LocalTime.of(endTime[0], endTime[1])};
-		this.courseSchedule = new ArrayList<ScheduleUnit>();
-		for (String day: weekdays) {
-			this.courseSchedule.add(new ScheduleUnit(this.courseName, day, this.courseMeetingTime));
-		}
-	}
-	
-	public void removeCourseSchedule() {
-		this.courseMeetingDays.clear();
-		this.courseMeetingTime = new LocalTime[2];
-		this.courseSchedule.clear();
-	}
-	
 	public String getCourseName() {
 		return this.courseName;
 	}
@@ -59,18 +32,5 @@ public class Course {
 	public double getCourseGrade() {
 		return this.courseGrade;
 	}
-	
-	public LocalTime[] getCourseMeetingTime() {
-		return this.courseMeetingTime;
-	}
-	
-	public ArrayList<String> getCourseMeetingDays() {
-		return this.courseMeetingDays;
-	}
-	
-	public ArrayList<ScheduleUnit> getCourseSchedule() {
-		return this.courseSchedule;
-	}
-	
 	
 }

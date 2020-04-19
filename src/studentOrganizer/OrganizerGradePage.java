@@ -28,9 +28,6 @@ import java.util.Enumeration;
 public class OrganizerGradePage extends JFrame {
 
 	private JPanel contentPane;
-	
-	// **
-	//private JTree tree;
 	private DefaultMutableTreeNode selectedNode;
   
 	/**
@@ -69,64 +66,22 @@ public class OrganizerGradePage extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblYourClassGrades, 25, SpringLayout.WEST, contentPane);
 		contentPane.add(lblYourClassGrades);
 		
-		// initialize JTree with classController
-//		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Courses");
-//		for(Object course : classController.getAllCourses().toArray()) {
-//		    root.add(new DefaultMutableTreeNode(course.toString()));
-//		    for(Category category : classController.getGPACalculator().categories) {
-//		    	Enumeration e = root.children();
-//		    	while(e.hasMoreElements()) {
-//		    		DefaultMutableTreeNode child = (DefaultMutableTreeNode) e.nextElement();
-//			    	if(child.toString().equals(category.c)) {
-//			    		child.add(new DefaultMutableTreeNode(category));
-//			    	}
-//		    	}
-//		    }
-//		}
-//		DefaultMutableTreeNode t = new DefaultMutableTreeNode();
 	    JTree tree = new JTree(classController.getRoot());
-		//DefaultTreeModel treeModel = (DefaultTreeModel) this.tree.getModel();
 
-
-	    //Listen for when the selection changes.
+	    // Listen for when the selection changes.
 	    tree.addTreeSelectionListener(new TreeSelectionListener() {
 	        public void valueChanged(TreeSelectionEvent e) {
 	            selectedNode = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
-
-	            // if nothing is selected
-	            if (selectedNode == null) return;
-
-	            // retrieve the node that was selected
-	            Object selectedNodeObject = selectedNode.getUserObject();
-
-	            // React to the node selection.
-	            // allow the user to enter categories and weights
-	            
+	            if (selectedNode == null) return;	            	            
 	        }
 	    });
 
-	    // add tree to frame
+	    // Add tree to frame
 		sl_contentPane.putConstraint(SpringLayout.NORTH, tree, 11, SpringLayout.SOUTH, lblYourClassGrades);
 		sl_contentPane.putConstraint(SpringLayout.WEST, tree, 15, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, tree, 196, SpringLayout.SOUTH, lblYourClassGrades);
 		sl_contentPane.putConstraint(SpringLayout.EAST, tree, 180, SpringLayout.WEST, contentPane);
 	    contentPane.add(tree);
-	    
-//		JList list = new JList(classController.getAllCourses());
-//		list.addListSelectionListener(new ListSelectionListener() {
-//		    public void valueChanged(ListSelectionEvent event) {
-//		        if (!event.getValueIsAdjusting()){
-//		            JList source = (JList)event.getSource();
-//		            String selected = source.getSelectedValue().toString();
-//		            System.out.println("selected: " + selected);
-//		        }
-//		    }
-//		});
-//		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 11, SpringLayout.SOUTH, lblYourClassGrades);
-//		sl_contentPane.putConstraint(SpringLayout.WEST, list, 15, SpringLayout.WEST, contentPane);
-//		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, 196, SpringLayout.SOUTH, lblYourClassGrades);
-//		sl_contentPane.putConstraint(SpringLayout.EAST, list, 180, SpringLayout.WEST, contentPane);
-//		contentPane.add(list);
 		
 		JButton btnGoHome = new JButton("Go Home");
 		btnGoHome.addMouseListener(new MouseAdapter() {
@@ -147,8 +102,7 @@ public class OrganizerGradePage extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				// if the selected node in the tree was a course
-				//if(selectedNode == Course)
+				// TODO: if the selected node in the tree was a course: if(selectedNode == Course)
 				JTextField categoryName = new JTextField();
 				JTextField categoryWeight = new JTextField();
 				Object[] message = {
@@ -159,23 +113,16 @@ public class OrganizerGradePage extends JFrame {
 				int option = JOptionPane.showConfirmDialog(null, message, "Add a category to a course", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION) {
 				    if (!categoryName.getText().equals("") && !categoryWeight.getText().equals("")) {
-				        // !! check if selectedNode is null; if it is, tell user to select a course
-				        // if I first select, then unselect, it is null
 				        
 				        if(selectedNode != null) {
 					        System.out.println("Category added");
 					        
-				        	// add Category to JTree's model
+				        	// Add Category to JTree's model
 					        classController.addCategory(selectedNode, categoryName.getText(), Double.parseDouble(categoryWeight.getText()));
 				        	DefaultTreeModel model = (DefaultTreeModel)tree.getModel();				        
 					        model.reload(selectedNode);
-					        //model.setRoot(classController.getRoot());
 				        	
-//					        classController.addCategory(selectedNode, categoryName.getText(), Double.parseDouble(categoryWeight.getText()));
-//					        classController.getGPAModel().reload(selectedNode);
-				        	
-				        	// add Category to the model
-				        	//!! sanitize input
+					        // TODO: sanitize input
 				        }
 				    } else {
 				        System.out.println("Please enter input");
@@ -192,8 +139,7 @@ public class OrganizerGradePage extends JFrame {
 		btnEnterAssignmentGrade.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// if the selected node in the tree was a course
-				//if(selectedNode == Course)
+				// TODO: if the selected node in the tree was a course: if(selectedNode == Course)
 				JTextField assignmentName = new JTextField();
 				JTextField points = new JTextField();
 				JTextField outOf = new JTextField();
@@ -206,8 +152,6 @@ public class OrganizerGradePage extends JFrame {
 				int option = JOptionPane.showConfirmDialog(null, message, "Add a category to a course", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION) {
 				    if (!assignmentName.getText().equals("") && !points.getText().equals("") && !outOf.getText().equals("")) {
-				        // !! check if selectedNode is null; if it is, tell user to select a course
-				        // if I first select, then unselect, it is null
 				        
 				        if(selectedNode != null) {
 					        System.out.println("Assignment added");
@@ -216,13 +160,8 @@ public class OrganizerGradePage extends JFrame {
 					        classController.addAssignment(selectedNode, assignmentName.getText(), Integer.parseInt(points.getText()), Integer.parseInt(outOf.getText()));
 				        	DefaultTreeModel model = (DefaultTreeModel)tree.getModel();				        
 					        model.reload(selectedNode);
-					        //model.setRoot(classController.getRoot());
-				        	
-//					        classController.addCategory(selectedNode, categoryName.getText(), Double.parseDouble(categoryWeight.getText()));
-//					        classController.getGPAModel().reload(selectedNode);
-				        	
-				        	// add Category to the model
-				        	//!! sanitize input
+					        
+					        // TODO: sanitize input
 				        }
 				    } else {
 				        System.out.println("Please enter input");
@@ -235,7 +174,6 @@ public class OrganizerGradePage extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEnterAssignmentGrade, 134, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnEnterCategoryInfo, -22, SpringLayout.NORTH, btnEnterAssignmentGrade);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnEnterAssignmentGrade, -4, SpringLayout.EAST, contentPane);
-		//sl_contentPane.putConstraint(SpringLayout.EAST, btnEnterAssignmentGrade, 0, SpringLayout.EAST, contentPane);
 
 		contentPane.add(btnEnterAssignmentGrade);
 	}

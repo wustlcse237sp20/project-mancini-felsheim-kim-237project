@@ -1,5 +1,10 @@
 package studentOrganizer;
 
+/**
+ * Manages tasks in the to-do list.
+ * Test cases for these methods can be found in TaskTest.
+ *
+ */
 public class Task {
 	
 	String taskDescription;
