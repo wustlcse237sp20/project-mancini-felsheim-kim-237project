@@ -42,7 +42,6 @@ User stories completed this iteration:
 User stories to be completed next iteration:
 - A student should be able to edit or delete what time a class meets to their schedule so that if there are any changes they will still go to class on time.
 - A student should be able to view a sorted to-do list, where urgent and uncompleted tasks sit at the top of the to-do list, so they can get a better idea of what needs to be accomplished first.
-- A student should be able to view a sorted to-do list, where urgent and uncompleted tasks sit at the top of the to-do list, so they can get a better idea of what needs to be accomplished first.
 - A student should be able to delete and edit a grade and its type so that they can keep an accurate record of their grades.
 - A student should be able to delete all completed tasks in the to-do list at once so they can de-clutter their list when needed.
 - A student should be able to view their current grade for any given class based on the assignments they uploaded (real and hypothetical) so that they can track their current standing.
