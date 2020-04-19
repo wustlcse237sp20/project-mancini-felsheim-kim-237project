@@ -66,9 +66,9 @@ public class OrganizerClassPage extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String s = (String)JOptionPane.showInputDialog(contentPane, "What is your course's name?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
-				if ((s!=null) && (s.length()>0)) {
-					classController.addCourse(s);
+				String courseName = (String)JOptionPane.showInputDialog(contentPane, "What is your course's name?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
+				if ((courseName!=null) && (courseName.length()>0)) {
+					classController.addCourse(courseName);
 					return;
 				}
 			}

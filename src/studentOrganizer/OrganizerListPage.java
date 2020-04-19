@@ -84,16 +84,18 @@ public class OrganizerListPage extends JFrame {
 				String day = (String)JOptionPane.showInputDialog(null, "What type of task do you want to add?", "Customized dialog", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (day == "Add Urgent Task")
 				{
-					String s = (String)JOptionPane.showInputDialog(contentPane, "What is your Urgent task?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
-					if ((s!=null) && (s.length()>0)) {
-						classController.addUrgent(s);
+					String taskName = (String)JOptionPane.showInputDialog(contentPane, "What is your Urgent task?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
+					if ((taskName!=null) && (taskName.length()>0)) {
+						classController.addUrgent(taskName);
+						list.updateUI();
 						return;
 					}
 				}
 				else if (day == "Add normal task") {
-					String s = (String)JOptionPane.showInputDialog(contentPane, "What is your task?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
-					if ((s!=null) && (s.length()>0)) {
-						classController.addTask(s);
+					String taskName = (String)JOptionPane.showInputDialog(contentPane, "What is your task?", "Customized dialog", JOptionPane.PLAIN_MESSAGE, null,null, null);
+					if ((taskName!=null) && (taskName.length()>0)) {
+						classController.addTask(taskName);
+						list.updateUI();
 						return;
 					}
 				}
@@ -107,6 +109,7 @@ public class OrganizerListPage extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				classController.removeTask(list.getSelectedIndex());
+				list.updateUI();
 			}
 		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnDeleteTask, 22, SpringLayout.SOUTH, btnNewButton);

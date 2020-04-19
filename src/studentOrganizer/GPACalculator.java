@@ -3,6 +3,11 @@ package studentOrganizer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A tool to calculate a student's grades and GPA.
+ * Test cases for GPACalculator (and Category) can be found in GPACalculatorTest.
+ *
+ */
 public class GPACalculator {
 	List<Category> categories;
 	double semesterGPA; 
