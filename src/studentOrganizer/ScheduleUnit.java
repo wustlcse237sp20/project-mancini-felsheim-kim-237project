@@ -2,6 +2,11 @@ package studentOrganizer;
 
 import java.time.LocalTime;
 
+/**
+ * Keeps track of an event to be recorded in a student's schedule.
+ * Note: there is no test class because all functions are trivial.
+ *
+ */
 public class ScheduleUnit implements Comparable<ScheduleUnit> {
 
 	String eventTitle;
@@ -47,6 +52,11 @@ public class ScheduleUnit implements Comparable<ScheduleUnit> {
 	@Override
 	public int compareTo(ScheduleUnit otherEvent) {
 		return this.startTime.compareTo(otherEvent.getStartTime());
+	}
+	
+	@Override
+	public String toString() {
+		return this.eventTitle;
 	}
  
 	

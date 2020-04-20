@@ -1,9 +1,15 @@
 package studentOrganizer;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * Manages a student's schedule of events (ScheduleUnits).
+ * Test cases for Schedule can be found in ScheduleTest.
+ *
+ */
 public class Schedule {
 	
 	HashMap<String, ArrayList<ScheduleUnit>> schedule;
@@ -19,13 +25,12 @@ public class Schedule {
 		this.schedule.put("Saturday", new ArrayList<ScheduleUnit>());
 	}
 	
-	public void addEventsToSchedule(ArrayList<ScheduleUnit> events) {
-		for (ScheduleUnit event: events) {
-			String day = event.getWeekday();
-			ArrayList<ScheduleUnit> currentSchedule = this.schedule.get(day);
-			currentSchedule.add(event);
-			this.schedule.put(day, currentSchedule);
-		}
+	public void addEventToSchedule(String eventTitle, String weekday, LocalTime[] meetingTime) {
+		ScheduleUnit event = new ScheduleUnit(eventTitle, weekday, meetingTime);
+		ArrayList<ScheduleUnit> currentSchedule = this.schedule.get(weekday);
+		currentSchedule.add(event);
+		this.schedule.put(weekday, currentSchedule);
+		sortAllEventsInScheduleByTime();
 	}
 	
 	public ArrayList<ScheduleUnit> getScheduleUnitsForDay(String day) {
@@ -40,6 +45,10 @@ public class Schedule {
 			scheduleSentences.add(sentence);
 		}
 		return scheduleSentences;
+	}
+	
+	public ScheduleUnit getScheduleUnitByIndexAndDay(String day, int index) {
+		return schedule.get(day).get(index);
 	}
 	
 	public void sortAllEventsInScheduleByTime() {

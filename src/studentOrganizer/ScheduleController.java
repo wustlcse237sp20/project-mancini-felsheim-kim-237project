@@ -1,62 +1,37 @@
 package studentOrganizer;
 
+import java.time.LocalTime;
+
 import javax.swing.DefaultListModel;
 
 /**
  * ScheduleController is a mediator between the main schedule model and the user interface
  */
 public class ScheduleController {
-	private DefaultListModel<Course> events;
+	private Schedule schedule;
 	
 	public ScheduleController() {
-		events = new DefaultListModel<>();
+		schedule = new Schedule();
 	}
 	
-	public void addCourseMeeting(String name) {
-		events.addElement(new Course(name));
+	public void addEvent(String eventTitle, String weekday, LocalTime[] meetingTime) {
+		schedule.addEventToSchedule(eventTitle, weekday, meetingTime);
 	}
 	
-	public void removeCourseMeeting(int index) {
-		events.remove(index);
+	public ScheduleUnit getEvent(String weekday, int index) {
+		return schedule.getScheduleUnitByIndexAndDay(weekday, index);
 	}
 	
-	public DefaultListModel<Course> getAllCourses(){
-		//TODO: implement method
-		return events;
+	public void removeEvent(String weekday, int index) {
+		//TODO: implement for next iteration
 	}
 	
-	public DefaultListModel<Course> getMondayCourses(){
-		//TODO: implement method for next iteration
-		return events;
-	}
-
-	public DefaultListModel<Course> getTuesdayCourses(){
-		//TODO: implement method for next iteration
-		return events;
+	public DefaultListModel<String> getEventsByDay(String weekday){
+		DefaultListModel<String> dayEvents = new DefaultListModel<>();
+		for (String event: schedule.getScheduleSentencesForDay(weekday)) {
+			dayEvents.addElement(event);
+		}
+		return dayEvents;
 	}
 	
-	public DefaultListModel<Course> getWednesdayCourses(){
-		//TODO: implement method for next iteration
-		return events;
-	}
-	
-	public DefaultListModel<Course> getThursdayCourses(){
-		//TODO: implement method for next iteration
-		return events;
-	}
-	
-	public DefaultListModel<Course> getFridayCourses(){
-		//TODO: implement method for next iteration
-		return events;
-	}
-	
-	public DefaultListModel<Course> getSaturdayCourses(){
-		//TODO: implement method for next iteration
-		return events;
-	}
-	
-	public DefaultListModel<Course> getSundayCourses(){
-		//TODO: implement method for next iteration
-		return events;
-	}
 }
