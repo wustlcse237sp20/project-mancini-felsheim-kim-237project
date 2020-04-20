@@ -64,11 +64,15 @@ public class ClassController {
 		tasks.remove(index);
 	}
 	
-	public Task getTask(int index) {
-		return tasks.get(index);
+	public void removeCourse(int index) {
+		classes.remove(index);
 	}
 	
-	public DefaultListModel<Task> getAllTasks(){
+	public DefaultListModel<String> getAllCourses(){
+		return classes;
+	}
+	
+	public DefaultListModel<String> getAllTasks(){
 		return tasks;
 	}
 	
@@ -91,5 +95,5 @@ public class ClassController {
 		((Category)categoryNode.getUserObject()).addAssignmentGrade(assignmentName, points, outOf);
 		categoryNode.add(new DefaultMutableTreeNode(assignmentName+"   "+(((int)(((double)points/outOf)*10000)))/10000.0));
 	}
+
 }
-	
