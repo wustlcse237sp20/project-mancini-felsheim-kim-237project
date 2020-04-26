@@ -64,15 +64,7 @@ public class ClassController {
 		tasks.remove(index);
 	}
 	
-	public void removeCourse(int index) {
-		classes.remove(index);
-	}
-	
-	public DefaultListModel<String> getAllCourses(){
-		return classes;
-	}
-	
-	public DefaultListModel<String> getAllTasks(){
+	public DefaultListModel<Task> getAllTasks(){
 		return tasks;
 	}
 	
