@@ -1,4 +1,3 @@
-
 package studentOrganizer;
 
 import java.awt.EventQueue;
@@ -116,30 +115,12 @@ public class OrganizerListPage extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnDeleteTask, 0, SpringLayout.WEST, btnNewButton);
 		contentPane.add(btnDeleteTask);
 		
-		JButton chckbxUrgent = new JButton("Urgent?");
-		chckbxUrgent.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int index = list.getSelectedIndex();
-				classController.markTaskUrgent(index);
-				list.updateUI();
-				return;
-			}
-		});
+		JCheckBox chckbxUrgent = new JCheckBox("Urgent?");
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnGoHome, 0, SpringLayout.WEST, chckbxUrgent);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxUrgent, 18, SpringLayout.SOUTH, btnDeleteTask);
 		contentPane.add(chckbxUrgent);
 		
-		JButton chckbxCompleted = new JButton("Completed?");
-		chckbxCompleted.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int index = list.getSelectedIndex();
-				classController.markTaskCompleted(index);
-				list.updateUI();
-				return;
-			}
-		});
+		JCheckBox chckbxCompleted = new JCheckBox("Completed?");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxCompleted, 20, SpringLayout.SOUTH, chckbxUrgent);
 		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxUrgent, 0, SpringLayout.WEST, chckbxCompleted);
 		sl_contentPane.putConstraint(SpringLayout.EAST, chckbxCompleted, -52, SpringLayout.EAST, contentPane);

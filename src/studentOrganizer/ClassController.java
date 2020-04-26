@@ -39,8 +39,7 @@ public class ClassController {
 		return classes;
 	}
 	
-	// To-do list methods
-	// TODO: Move to a separate controller class for next iteration
+	// ToDo list methods
 	
 	public void addTask(String name) {
 		Task task = new Task(name, false);
@@ -64,12 +63,16 @@ public class ClassController {
 		tasks.remove(index);
 	}
 	
+	public DefaultListModel<Task> getAllTasks(){
+		return tasks;
+	}
+	
 	public Task getTask(int index) {
 		return tasks.get(index);
 	}
 	
-	public DefaultListModel<Task> getAllTasks(){
-		return tasks;
+	public int getTaskSize() {
+		return tasks.getSize();
 	}
 	
 	// GPACalculator methods
@@ -91,5 +94,5 @@ public class ClassController {
 		((Category)categoryNode.getUserObject()).addAssignmentGrade(assignmentName, points, outOf);
 		categoryNode.add(new DefaultMutableTreeNode(assignmentName+"   "+(((int)(((double)points/outOf)*10000)))/10000.0));
 	}
+
 }
-	
