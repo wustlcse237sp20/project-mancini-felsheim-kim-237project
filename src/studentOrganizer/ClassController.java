@@ -39,8 +39,7 @@ public class ClassController {
 		return classes;
 	}
 	
-	// To-do list methods
-	// TODO: Move to a separate controller class for next iteration
+	// ToDo list methods
 	
 	public void addTask(String name) {
 		Task task = new Task(name, false);
@@ -66,6 +65,14 @@ public class ClassController {
 	
 	public DefaultListModel<Task> getAllTasks(){
 		return tasks;
+	}
+	
+	public Task getTask(int index) {
+		return tasks.get(index);
+	}
+	
+	public int getTaskSize() {
+		return tasks.getSize();
 	}
 	
 	// GPACalculator methods
