@@ -10,7 +10,7 @@ import studentOrganizer.GPACalculator;
  *       because methods from GPACalculator call all methods from Category
  */
 public class GPACalculatorTest {
-	GPACalculator calculator = new GPACalculator();
+	GPACalculator calculator = new GPACalculator("test class");
 	
     @Test
     void testAddCategory() {
@@ -47,7 +47,6 @@ public class GPACalculatorTest {
     	calculator.addAssignmentGrade("HW", "HW1", 8, 10);
     	calculator.addAssignmentGrade("Exams", "Exam1", 50, 100);
 
-    	System.out.println(calculator.calculateCourseGrade());
     	Assert.assertTrue(calculator.calculateCourseGrade() == (0.5*8/10+0.5*50/100));
     }
 }
