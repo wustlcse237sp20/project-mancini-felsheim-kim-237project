@@ -1,5 +1,7 @@
 package studentOrganizer;
 
+import java.util.ArrayList;
+
 import javax.swing.DefaultListModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -73,6 +75,50 @@ public class ClassController {
 	
 	public int getTaskSize() {
 		return tasks.getSize();
+	}
+	
+	public DefaultListModel<Task> removeAllCompletedTasks(){
+		ToDoList toDoList = new ToDoList();
+		for (int i=0; i<tasks.size(); i++) {
+			toDoList.addTask(tasks.get(i));
+		}
+		toDoList.removeAllCompletedTasks();
+		
+		tasks.removeAllElements();
+		
+		for (int i=0; i<toDoList.size(); i++)
+		{
+			tasks.add(i, toDoList.getTask(i));
+		}
+		return tasks;
+	}
+	
+	public DefaultListModel<Task> sortAllTasks(){
+		ToDoList toDoList = new ToDoList();
+		for (int i=0; i<tasks.size(); i++) {
+			toDoList.addTask(tasks.get(i));
+		}
+		toDoList.sortAllTasks();
+		
+		for (int i=0; i<tasks.size(); i++)
+		{
+			tasks.set(i, toDoList.getTask(i));
+		}
+		return tasks;
+	}
+	
+	public DefaultListModel<Task> markAllComplete(){
+		ToDoList toDoList = new ToDoList();
+		for (int i=0; i<tasks.size(); i++) {
+			toDoList.addTask(tasks.get(i));
+		}
+		toDoList.markAllTasksAsCompleted();
+		
+		for (int i=0; i<tasks.size(); i++)
+		{
+			tasks.set(i, toDoList.getTask(i));
+		}
+		return tasks;
 	}
 	
 	// GPACalculator methods
