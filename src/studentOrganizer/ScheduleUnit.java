@@ -49,6 +49,15 @@ public class ScheduleUnit implements Comparable<ScheduleUnit> {
 		return endTime.toString();
 	}
 	
+	public void setEventTitle(String newEventTitle) {
+		this.eventTitle = newEventTitle;
+	}
+	
+	public void setMeetingTime(LocalTime[] newMeetingTime) {
+		this.startTime = newMeetingTime[0];
+		this.endTime = newMeetingTime[1];
+	}
+	
 	@Override
 	public int compareTo(ScheduleUnit otherEvent) {
 		return this.startTime.compareTo(otherEvent.getStartTime());

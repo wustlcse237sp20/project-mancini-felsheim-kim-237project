@@ -86,10 +86,10 @@ public class OrganizerHome extends JFrame {
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String[] scheduleButtons = { "Cancel", "Add event to schedule", "View schedule" };
+				String[] scheduleButtons = { "Cancel", "Add event(s) to schedule", "View schedule" };
 			    int action = JOptionPane.showOptionDialog(null, "What do you want to do?", "Customized dialog",
 			        JOptionPane.YES_NO_CANCEL_OPTION, 1, null, scheduleButtons, null);
-			    if (scheduleButtons[action] == "Add event to schedule") {
+			    if (scheduleButtons[action] == "Add event(s) to schedule") {
 			    	addEventToSchedule();
 			    } 
 			    else if (scheduleButtons[action] == "View schedule") {
@@ -174,13 +174,10 @@ public class OrganizerHome extends JFrame {
 						+ "(ranging from 00 to 23) \nand MM refers to minute (ranging from 00 to 59).", 
 						"Customized dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
 				try {
-					LocalTime[] eventMeetingTime = parseStringEventTimeToLocalTime(stringEventTime);
-					
-					addSpecifiedEventsToSchedule(eventTitle, allBoxes, eventMeetingTime);
-					
+					scheduleController.addSpecifiedEventsToSchedule(eventTitle, allBoxes, stringEventTime);
 					JOptionPane.showMessageDialog(null, eventTitle + " added to schedule");
 				}
-				catch (Exception exception){
+				catch (Exception exception) {
 					JOptionPane.showMessageDialog(null, "Invalid time of event entered. \n\nMake sure to "
 							+ "enter as HH:MM-HH:MM, where HH refers to hour (ranging from 00 to "
 							+ "23) \nand MM refers to minute (ranging from 00 to 59).", "Warning",
@@ -254,29 +251,6 @@ public class OrganizerHome extends JFrame {
 		}
 	}
 	
-	private void addSpecifiedEventsToSchedule(String eventTitle, JCheckBox[] dayBoxes, LocalTime[] eventTime) {
-		String [] weekday = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-		for (int i = 0; i < 7; i++) {
-			if(dayBoxes[i].isSelected()) {
-				scheduleController.addEvent(eventTitle, weekday[i], eventTime);
-			}
-		}
-	}
-	
-	private LocalTime[] parseStringEventTimeToLocalTime(String stringEventTime) {
-		String startString = stringEventTime.split("-")[0];
-		String endString = stringEventTime.split("-")[1];
-		
-		int startHour = Integer.parseInt(startString.split(":")[0]);
-		int startMinute = Integer.parseInt(startString.split(":")[1]);
-		int endHour = Integer.parseInt(endString.split(":")[0]);
-		int endMinute = Integer.parseInt(endString.split(":")[1]);
-		
-		LocalTime[] eventMeetingTime = new LocalTime[]{LocalTime.of(startHour, startMinute),
-				LocalTime.of(endHour, endMinute)};
-		
-		return eventMeetingTime;
-	}
 }
 
 
