@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -58,11 +59,11 @@ public class SaturdaySchedule extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -28, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblTodaysSchedule, -6, SpringLayout.NORTH, list);
 		sl_contentPane.putConstraint(SpringLayout.WEST, list, 10, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, list, 408, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, list, 290, SpringLayout.WEST, contentPane);
 		contentPane.add(list); 
 		
-		JButton btnGoHome = new JButton("Go Home");
-		btnGoHome.addMouseListener(new MouseAdapter() {
+		JButton buttonGoHome = new JButton("Go Home");
+		buttonGoHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				OrganizerHome homePage = new OrganizerHome(classController, scheduleController);
@@ -71,9 +72,116 @@ public class SaturdaySchedule extends JFrame {
 				dispose();
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnGoHome, 5, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnGoHome, -10, SpringLayout.EAST, contentPane);
-		contentPane.add(btnGoHome);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, buttonGoHome, 5, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, buttonGoHome, -10, SpringLayout.EAST, contentPane);
+		contentPane.add(buttonGoHome);
+		
+		JButton buttonRemove = new JButton("Remove Event");
+		buttonRemove.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					scheduleController.removeEvent("Saturday", list.getSelectedIndex());
+					SaturdaySchedule saturdaySchedule = new SaturdaySchedule(scheduleController, classController);
+					saturdaySchedule.setVisible(true);
+					contentPane.setVisible(false);
+					dispose();
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "You must select an event to update.", "Warning",
+					        JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+		sl_contentPane.putConstraint(SpringLayout.NORTH, buttonRemove, 30, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, buttonRemove, -10, SpringLayout.EAST, contentPane);
+		contentPane.add(buttonRemove);
+		
+		JButton buttonUpdate = new JButton("Update Event");
+		buttonUpdate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					String[] updateOptions = { "Cancel", "Update event title", "Update meeting time" };
+				    int action = JOptionPane.showOptionDialog(null, "What do you want to update?", "Customized dialog",
+				        JOptionPane.YES_NO_CANCEL_OPTION, 1, null, updateOptions, null);
+				    if (updateOptions[action] == "Update event title") {
+				    	updateEventTitle(scheduleController, list.getSelectedIndex());
+				    } 
+				    else if (updateOptions[action] == "Update meeting time") {
+				    	updateMeetingTime(scheduleController, list.getSelectedIndex());
+				    }
+				    SaturdaySchedule saturdaySchedule = new SaturdaySchedule(scheduleController, classController);
+					saturdaySchedule.setVisible(true);
+					contentPane.setVisible(false);
+					dispose();
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "You must select an event to update.", "Warning",
+					        JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+		sl_contentPane.putConstraint(SpringLayout.NORTH, buttonUpdate, 55, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, buttonUpdate, -10, SpringLayout.EAST, contentPane);
+		contentPane.add(buttonUpdate);
+		
+		JButton buttonAddEvent = new JButton("Add Event");
+		buttonAddEvent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String eventTitle = (String)JOptionPane.showInputDialog(null, "What is the name of the event?", 
+						"Customized dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
+				if ((eventTitle!=null) && (eventTitle.length()>0)) {
+					String stringEventTime = (String)JOptionPane.showInputDialog(null, 
+							"What time does the event occur? \n\nEnter as HH:MM-HH:MM, where HH refers to hour "
+							+ "(ranging from 00 to 23) \nand MM refers to minute (ranging from 00 to 59).", 
+							"Customized dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
+					try {
+						scheduleController.addEvent(eventTitle, "Saturday", stringEventTime);
+						JOptionPane.showMessageDialog(null, eventTitle + " added to schedule");
+					}
+					catch (Exception exception){
+						JOptionPane.showMessageDialog(null, "Invalid time of event entered. \n\nMake sure to "
+								+ "enter as HH:MM-HH:MM, where HH refers to hour (ranging from 00 to "
+								+ "23) \nand MM refers to minute (ranging from 00 to 59).", "Warning",
+						        JOptionPane.WARNING_MESSAGE);
+					}
+				}
+			    SaturdaySchedule saturdaySchedule = new SaturdaySchedule(scheduleController, classController);
+				saturdaySchedule.setVisible(true);
+				contentPane.setVisible(false);
+				dispose();
+			}
+		});
+		sl_contentPane.putConstraint(SpringLayout.NORTH, buttonAddEvent, 80, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, buttonAddEvent, -10, SpringLayout.EAST, contentPane);
+		contentPane.add(buttonAddEvent);
+	}
+	
+	private void updateEventTitle(ScheduleController scheduleController, int index) {
+		String newEventTitle = (String)JOptionPane.showInputDialog(null, "What is the updated name of the event?", 
+				"Customized dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
+		if ((newEventTitle!=null) && (newEventTitle.length()>0)) {
+			scheduleController.updateEventTitle("Saturday", index, newEventTitle);
+		}
+	}
+	
+	private void updateMeetingTime(ScheduleController scheduleController, int index) {
+		String newStringEventTime = (String)JOptionPane.showInputDialog(null, 
+				"What time does the event occur? \n\nEnter as HH:MM-HH:MM, where HH refers to hour "
+				+ "(ranging from 00 to 23) \nand MM refers to minute (ranging from 00 to 59).", 
+				"Customized dialog", JOptionPane.PLAIN_MESSAGE, null, null, null);
+		if ((newStringEventTime!=null) && (newStringEventTime.length()>0)) {
+			try {
+				scheduleController.updateMeetingTime("Saturday", index, newStringEventTime);
+				JOptionPane.showMessageDialog(null, newStringEventTime + " added to schedule");
+			}
+			catch (Exception exception){
+				JOptionPane.showMessageDialog(null, "Invalid time of event entered. \n\nMake sure to "
+						+ "enter as HH:MM-HH:MM, where HH refers to hour (ranging from 00 to "
+						+ "23) \nand MM refers to minute (ranging from 00 to 59).", "Warning",
+				        JOptionPane.WARNING_MESSAGE);
+			}
+		}
 	}
 
 }
