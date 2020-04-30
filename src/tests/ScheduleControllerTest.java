@@ -75,12 +75,13 @@ class ScheduleControllerTest {
 	
 	@Test
 	void testUpdateMeetingTime() {
+		scheduleController.addEvent("Chem lecture", "Tuesday", "09:00-10:00");
 		scheduleController.addEvent("Bio lecture", "Tuesday", "10:00-11:00");
-		Assert.assertEquals(scheduleController.getEvent("Tuesday", 0).getStartTimeAsString(), "10:00");
-		Assert.assertEquals(scheduleController.getEvent("Tuesday", 0).getEndTimeAsString(), "11:00");
-		scheduleController.updateMeetingTime("Tuesday", 0, "09:00-10:30");
-		Assert.assertEquals(scheduleController.getEvent("Tuesday", 0).getStartTimeAsString(), "09:00");
-		Assert.assertEquals(scheduleController.getEvent("Tuesday", 0).getEndTimeAsString(), "10:30");
+		Assert.assertEquals(scheduleController.getEvent("Tuesday", 1).getStartTimeAsString(), "10:00");
+		Assert.assertEquals(scheduleController.getEvent("Tuesday", 1).getEndTimeAsString(), "11:00");
+		scheduleController.updateMeetingTime("Tuesday", 0, "08:00-09:30");
+		Assert.assertEquals(scheduleController.getEvent("Tuesday", 0).getStartTimeAsString(), "08:00");
+		Assert.assertEquals(scheduleController.getEvent("Tuesday", 0).getEndTimeAsString(), "09:30");
 	}
 	
 	@Test

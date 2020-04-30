@@ -43,6 +43,7 @@ public class Schedule {
 	
 	public void updateEventMeetingTime(String weekday, int index, LocalTime[] newMeetingTime) {
 		this.schedule.get(weekday).get(index).setMeetingTime(newMeetingTime);
+		sortAllEventsInScheduleByTime();
 	}
 	
 	public ArrayList<ScheduleUnit> getScheduleUnitsForDay(String day) {
