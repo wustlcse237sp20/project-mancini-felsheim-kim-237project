@@ -6,8 +6,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-// TODO: Rename to CourseController (for less confusion) next iteration.
-
 /**
  * ClassController is a mediator between the main course model and the user interface
  */

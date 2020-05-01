@@ -3,7 +3,7 @@ package tests;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import studentOrganizer.ClassController;
-
+//tests Task methods from ClassController
 class TaskControllerTest {
 
 	ClassController toDoList= new ClassController();

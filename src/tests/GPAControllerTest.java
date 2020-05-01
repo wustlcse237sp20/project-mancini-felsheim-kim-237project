@@ -16,7 +16,7 @@ import studentOrganizer.ClassController;
 import studentOrganizer.GPACalculator;
 import studentOrganizer.OrganizerGradePage;
 import studentOrganizer.ScheduleController;
-
+// tests GPACalculator methods from ClassController
 class GPAControllerTest {
 	ClassController classController = new ClassController();
 
