@@ -83,7 +83,12 @@ public class OrganizerClassPage extends JFrame {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				classController.removeCourse(list.getSelectedIndex());
+				try {
+					classController.removeCourse(list.getSelectedIndex());
+				}
+				catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "Please Select a class to remove", "Warning", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton_1, 34, SpringLayout.SOUTH, btnNewButton);
