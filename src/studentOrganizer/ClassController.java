@@ -141,7 +141,8 @@ public class ClassController {
 		DefaultMutableTreeNode categoryNode = ((DefaultMutableTreeNode) assignmentNode.getParent());
 		categoryNode.remove(assignmentNode);
 		
-		// remove assignment from the category
+		// remove assignment from the category and from GPACalculator
+		((GPACalculator)((DefaultMutableTreeNode) categoryNode.getParent()).getUserObject()).deleteAssignmentGrade(categoryNode.toString().split(" ")[0], assignmentNode.toString().split(" ")[0]);
 		Category category = (Category)categoryNode.getUserObject();
 		String assignmentName = assignmentNode.toString().split(" ")[0];
 		category.deleteAssignmentGrade(assignmentName);
