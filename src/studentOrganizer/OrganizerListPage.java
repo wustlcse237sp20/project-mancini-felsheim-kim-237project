@@ -107,8 +107,13 @@ public class OrganizerListPage extends JFrame {
 		btnDeleteTask.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				classController.removeTask(list.getSelectedIndex());
-				list.updateUI();
+				try {
+					classController.removeTask(list.getSelectedIndex());
+					list.updateUI();
+				}
+				catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "Please Select a Task to delete", "Warning", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnDeleteTask, 30, SpringLayout.SOUTH, btnNewButton);
@@ -156,10 +161,15 @@ public class OrganizerListPage extends JFrame {
 		chckbxUrgent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int index = list.getSelectedIndex();
-				classController.markTaskUrgent(index);
-				list.updateUI();
-				return;
+				try {
+					int index = list.getSelectedIndex();
+					classController.markTaskUrgent(index);
+					list.updateUI();
+					return;
+				}
+				catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "Please Select a Task to make urgent", "Warning", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnGoHome, 0, SpringLayout.WEST, chckbxUrgent);
@@ -170,10 +180,15 @@ public class OrganizerListPage extends JFrame {
 		chckbxCompleted.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int index = list.getSelectedIndex();
-				classController.markTaskCompleted(index);
-				list.updateUI();
-				return;
+				try {
+					int index = list.getSelectedIndex();
+					classController.markTaskCompleted(index);
+					list.updateUI();
+					return;
+				}
+				catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "Please Select a Task to mark complete", "Warning", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxCompleted, 10, SpringLayout.SOUTH, chckbxUrgent);
