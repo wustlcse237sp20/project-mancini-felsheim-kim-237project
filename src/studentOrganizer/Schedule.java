@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * Manages a student's schedule of events (ScheduleUnits).
- * Test cases for Schedule can be found in ScheduleTest.
+ * Test cases for Schedule can be found in ScheduleTest.java
  *
  */
 public class Schedule {
@@ -30,6 +30,19 @@ public class Schedule {
 		ArrayList<ScheduleUnit> currentSchedule = this.schedule.get(weekday);
 		currentSchedule.add(event);
 		this.schedule.put(weekday, currentSchedule);
+		sortAllEventsInScheduleByTime();
+	}
+	
+	public void removeEventFromSchedule(String weekday, int index) {
+		this.schedule.get(weekday).remove(index);
+	}
+	
+	public void updateEventTitle(String weekday, int index, String newEventTitle) {
+		this.schedule.get(weekday).get(index).setEventTitle(newEventTitle);
+	}
+	
+	public void updateEventMeetingTime(String weekday, int index, LocalTime[] newMeetingTime) {
+		this.schedule.get(weekday).get(index).setMeetingTime(newMeetingTime);
 		sortAllEventsInScheduleByTime();
 	}
 	
