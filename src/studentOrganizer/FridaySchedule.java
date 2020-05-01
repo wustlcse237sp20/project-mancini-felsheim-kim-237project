@@ -87,7 +87,7 @@ public class FridaySchedule extends JFrame {
 					contentPane.setVisible(false);
 					dispose();
 				} catch (Exception exception) {
-					JOptionPane.showMessageDialog(null, "You must select an event to update.", "Warning",
+					JOptionPane.showMessageDialog(null, "You must select an event to remove.", "Warning",
 					        JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -173,7 +173,6 @@ public class FridaySchedule extends JFrame {
 		if ((newStringEventTime!=null) && (newStringEventTime.length()>0)) {
 			try {
 				scheduleController.updateMeetingTime("Friday", index, newStringEventTime);
-				JOptionPane.showMessageDialog(null, newStringEventTime + " added to schedule");
 			}
 			catch (Exception exception){
 				JOptionPane.showMessageDialog(null, "Invalid time of event entered. \n\nMake sure to "
