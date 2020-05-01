@@ -51,6 +51,20 @@ User stories to be completed next iteration:
 Implemented features that don't currently work:
 - All implemented user interface functions should work.
 
+# Iteration 3:
+User stories completed this iteration:
+- A student should be able to delete a grade so that they can keep an accurate record of their grades.
+- A student should be able to view their current grade for any given class based on the assignments they uploaded so that they can track their current standing.
+- A student should be able to edit the name of an event in their schedule in case they made an error in initially naming it.
+- A student should be able to delete an event from their schedule in case this event is no longer occuring.
+- A student should be able to edit what time a class meets to their schedule so that if there are any changes they will still go to class on time.
+- A student should be able to delete all completed tasks in the to-do list at once so they can de-clutter their list when needed.
+- A student should be able to mark all tasks as completed in the to-do list at once so they can update their list efficiently when needed.
+- A student should be able to mark all tasks as completed in the to-do list at once so they can update their list efficiently when needed.
+
+Implemented features that don't currently work:
+- All implemented user interface functions should work.
+
 # Commands needed to compile and run our code:
 For a Mac via command line:
 1. Navigate to the "project-mancini-felsheim-kim-237project" folder. If you type "ls" here, you should see the file "runStudentOrganizer.sh"
