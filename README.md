@@ -60,7 +60,6 @@ User stories completed this iteration:
 - A student should be able to edit what time a class meets to their schedule so that if there are any changes they will still go to class on time.
 - A student should be able to delete all completed tasks in the to-do list at once so they can de-clutter their list when needed.
 - A student should be able to mark all tasks as completed in the to-do list at once so they can update their list efficiently when needed.
-- A student should be able to mark all tasks as completed in the to-do list at once so they can update their list efficiently when needed.
 
 Implemented features that don't currently work:
 - All implemented user interface functions should work.
